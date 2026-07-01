@@ -15,32 +15,9 @@ import {
   incidents,
 } from '../db/schema.js'
 import { authMiddleware, getUserId } from '../lib/auth.js'
+import { DEFAULT_WEIGHTS, DEFAULT_GRADE_BANDS } from './rules.js'
 
 const router = new Hono()
-
-// ----------------------------------------------------------------------------
-// Defaults for seeded policies
-// ----------------------------------------------------------------------------
-
-const DEFAULT_WEIGHTS: Record<string, number> = {
-  maintainer_change: 0.18,
-  publish_cadence: 0.1,
-  install_scripts: 0.18,
-  provenance: 0.12,
-  dependency_delta: 0.12,
-  reputation: 0.1,
-  bump_magnitude: 0.08,
-  typosquat: 0.07,
-  deprecation: 0.05,
-}
-
-const DEFAULT_GRADE_BANDS: Record<string, number> = {
-  A: 15,
-  B: 35,
-  C: 55,
-  D: 75,
-  F: 100,
-}
 
 function slugify(name: string): string {
   return name
