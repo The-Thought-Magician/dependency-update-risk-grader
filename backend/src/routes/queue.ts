@@ -1,7 +1,6 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
 import { z } from 'zod'
-import { createHash } from 'node:crypto'
 import { db } from '../db/index.js'
 import {
   updates,
@@ -14,6 +13,7 @@ import {
 } from '../db/schema.js'
 import { eq, and, desc } from 'drizzle-orm'
 import { authMiddleware, getUserId } from '../lib/auth.js'
+import { computeEntryHash } from './ledger.js'
 
 const router = new Hono()
 
@@ -52,31 +52,6 @@ async function lastEntryHash(workspaceId: string): Promise<string> {
   return last?.entry_hash ?? ''
 }
 
-function computeEntryHash(input: {
-  prev_hash: string
-  workspace_id: string
-  update_id: string
-  decision: string
-  grade_at_decision: string
-  score_at_decision: number
-  actor_id: string
-  justification: string
-  created_at: string
-}): string {
-  const payload = [
-    input.prev_hash,
-    input.workspace_id,
-    input.update_id,
-    input.decision,
-    input.grade_at_decision,
-    String(input.score_at_decision),
-    input.actor_id,
-    input.justification,
-    input.created_at,
-  ].join('|')
-  return createHash('sha256').update(payload).digest('hex')
-}
-
 // Append a decision to the per-workspace hash chain.
 async function appendLedger(opts: {
   workspaceId: string
@@ -96,9 +71,18 @@ async function appendLedger(opts: {
 
   const prev_hash = await lastEntryHash(opts.workspaceId)
   const created = new Date()
-  const created_at_iso = created.toISOString()
   const grade_at_decision = score?.grade ?? 'N/A'
   const score_at_decision = score?.total_score ?? 0
+  const policy_result = {}
+  const factors_snapshot = {
+    factors: factors.map((f) => ({
+      factor_type: f.factor_type,
+      raw_value: f.raw_value,
+      sub_score: f.sub_score,
+      weight: f.weight,
+      contribution: f.contribution,
+    })),
+  }
 
   const entry_hash = computeEntryHash({
     prev_hash,
@@ -109,7 +93,9 @@ async function appendLedger(opts: {
     score_at_decision,
     actor_id: opts.actorId,
     justification: opts.justification,
-    created_at: created_at_iso,
+    policy_result,
+    factors_snapshot,
+    created_at: created,
   })
 
   await db.insert(ledger_entries).values({
@@ -120,16 +106,8 @@ async function appendLedger(opts: {
     score_at_decision,
     actor_id: opts.actorId,
     justification: opts.justification,
-    policy_result: {},
-    factors_snapshot: {
-      factors: factors.map((f) => ({
-        factor_type: f.factor_type,
-        raw_value: f.raw_value,
-        sub_score: f.sub_score,
-        weight: f.weight,
-        contribution: f.contribution,
-      })),
-    },
+    policy_result,
+    factors_snapshot,
     prev_hash,
     entry_hash,
     created_at: created,
