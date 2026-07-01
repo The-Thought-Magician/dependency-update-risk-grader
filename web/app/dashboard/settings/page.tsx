@@ -81,6 +81,10 @@ export default function SettingsPage() {
   const [members, setMembers] = useState<Member[]>([])
   const [billing, setBilling] = useState<BillingInfo | null>(null)
 
+  const [newWsName, setNewWsName] = useState('')
+  const [creatingWs, setCreatingWs] = useState(false)
+  const [createWsError, setCreateWsError] = useState<string | null>(null)
+
   // Editable workspace fields
   const [name, setName] = useState('')
   const [ecosystem, setEcosystem] = useState('npm')
@@ -172,6 +176,25 @@ export default function SettingsPage() {
     }
   }
 
+  async function createWorkspace() {
+    if (!newWsName.trim()) {
+      setCreateWsError('Workspace name is required.')
+      return
+    }
+    setCreatingWs(true)
+    setCreateWsError(null)
+    try {
+      const created: Workspace = await api.createWorkspace({ name: newWsName.trim() })
+      localStorage.setItem(WS_KEY, created.id)
+      setWorkspaces((prev) => [...prev, created])
+      await loadWorkspace(created.id)
+    } catch (e) {
+      setCreateWsError(e instanceof Error ? e.message : 'Failed to create workspace')
+    } finally {
+      setCreatingWs(false)
+    }
+  }
+
   async function manageBilling() {
     setBillingBusy(true)
     setActionError(null)
@@ -208,11 +231,37 @@ export default function SettingsPage() {
 
   if (!workspace) {
     return (
-      <EmptyState
-        title="No workspace found"
-        description="Create a workspace first to configure its settings."
-        icon="📭"
-      />
+      <div className="mx-auto max-w-md">
+        <Card>
+          <CardHeader>
+            <h2 className="text-sm font-semibold text-neutral-100">Create your workspace</h2>
+            <p className="mt-0.5 text-xs text-neutral-500">
+              You need a workspace before you can track projects and grade updates.
+            </p>
+          </CardHeader>
+          <CardBody className="space-y-4">
+            {createWsError && (
+              <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                {createWsError}
+              </div>
+            )}
+            <div>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+                Workspace name
+              </label>
+              <input
+                value={newWsName}
+                onChange={(e) => setNewWsName(e.target.value)}
+                placeholder="e.g. Acme Engineering"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+              />
+            </div>
+            <Button onClick={() => void createWorkspace()} disabled={creatingWs}>
+              {creatingWs ? <Spinner className="h-4 w-4" /> : 'Create workspace'}
+            </Button>
+          </CardBody>
+        </Card>
+      </div>
     )
   }
 
