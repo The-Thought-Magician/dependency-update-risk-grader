@@ -12,6 +12,11 @@ const router = new Hono()
 // This MUST match the serialization the writer (queue/incident routes) uses.
 // ----------------------------------------------------------------------------
 
+// policy_result/factors_snapshot are stored as jsonb, which does not preserve
+// object key order across a DB round-trip — hashing them would make every
+// entry fail verification the moment it's re-read from Postgres, even
+// untampered. They're kept as unhashed supporting metadata on the row instead;
+// the hash commits to the immutable decision fields only.
 export function computeEntryHash(entry: {
   workspace_id: string
   update_id: string
@@ -20,8 +25,6 @@ export function computeEntryHash(entry: {
   score_at_decision: number
   actor_id: string
   justification: string
-  policy_result: unknown
-  factors_snapshot: unknown
   created_at: Date | string
   prev_hash: string
 }): string {
@@ -35,8 +38,6 @@ export function computeEntryHash(entry: {
     score_at_decision: entry.score_at_decision,
     actor_id: entry.actor_id,
     justification: entry.justification,
-    policy_result: entry.policy_result ?? {},
-    factors_snapshot: entry.factors_snapshot ?? {},
     created_at: createdAt,
     prev_hash: entry.prev_hash,
   })
@@ -196,8 +197,6 @@ router.get('/verify', async (c) => {
       score_at_decision: e.score_at_decision,
       actor_id: e.actor_id,
       justification: e.justification,
-      policy_result: e.policy_result,
-      factors_snapshot: e.factors_snapshot,
       created_at: e.created_at,
       prev_hash: e.prev_hash,
     })

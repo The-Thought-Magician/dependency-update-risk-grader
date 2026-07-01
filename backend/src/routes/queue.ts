@@ -93,8 +93,6 @@ async function appendLedger(opts: {
     score_at_decision,
     actor_id: opts.actorId,
     justification: opts.justification,
-    policy_result,
-    factors_snapshot,
     created_at: created,
   })
 
