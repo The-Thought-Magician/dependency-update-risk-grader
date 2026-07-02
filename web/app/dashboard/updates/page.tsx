@@ -200,8 +200,8 @@ export default function UpdatesPage() {
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">Updates</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">Updates</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Every graded dependency bump across this workspace, with risk grade and decision status.
           </p>
         </div>
@@ -209,7 +209,7 @@ export default function UpdatesPage() {
           <select
             value={workspaceId}
             onChange={(e) => switchWorkspace(e.target.value)}
-            className="rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-1.5 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
           >
             {workspaces.map((w) => (
               <option key={w.id} value={w.id}>
@@ -234,12 +234,12 @@ export default function UpdatesPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by package, project, version..."
-              className="min-w-[200px] flex-1 rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-lime-500/50 focus:outline-none"
+              className="min-w-[200px] flex-1 rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-pink-500/50 focus:outline-none"
             />
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500/50 focus:outline-none"
+              className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500/50 focus:outline-none"
             >
               {STATUS_OPTIONS.map((s) => (
                 <option key={s.value || 'all'} value={s.value}>
@@ -250,7 +250,7 @@ export default function UpdatesPage() {
             <select
               value={ecosystem}
               onChange={(e) => setEcosystem(e.target.value)}
-              className="rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500/50 focus:outline-none"
+              className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500/50 focus:outline-none"
             >
               <option value="all">All ecosystems</option>
               {ecosystems.map((e) => (
@@ -276,7 +276,7 @@ export default function UpdatesPage() {
       ) : (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-neutral-200">
+            <h2 className="text-sm font-semibold text-zinc-200">
               {filtered.length} update{filtered.length === 1 ? '' : 's'}
             </h2>
           </CardHeader>
@@ -301,24 +301,24 @@ export default function UpdatesPage() {
                     <TD>
                       <Link
                         href={`/dashboard/updates/${u.id}`}
-                        className="font-medium text-neutral-100 hover:text-lime-300"
+                        className="font-medium text-zinc-100 hover:text-pink-300"
                       >
                         {u.package_name ?? u.package_id}
                       </Link>
-                      <span className="ml-2 text-xs text-neutral-600">{u.ecosystem}</span>
+                      <span className="ml-2 text-xs text-zinc-600">{u.ecosystem}</span>
                     </TD>
                     <TD>
                       <div className="flex items-center gap-1.5 text-xs">
-                        <code className="rounded bg-neutral-950 px-1.5 py-0.5 text-neutral-400">{u.from_version}</code>
-                        <span className="text-lime-400">→</span>
-                        <code className="rounded bg-neutral-950 px-1.5 py-0.5 text-lime-300">{u.to_version}</code>
+                        <code className="rounded bg-zinc-950 px-1.5 py-0.5 text-zinc-400">{u.from_version}</code>
+                        <span className="text-pink-400">→</span>
+                        <code className="rounded bg-zinc-950 px-1.5 py-0.5 text-pink-300">{u.to_version}</code>
                       </div>
                     </TD>
-                    <TD className="text-sm text-neutral-400">{u.project_name ?? u.project_id}</TD>
+                    <TD className="text-sm text-zinc-400">{u.project_name ?? u.project_id}</TD>
                     <TD>
                       <Badge tone={STATUS_TONE[u.status] ?? 'neutral'}>{humanizeStatus(u.status)}</Badge>
                     </TD>
-                    <TD className="text-right font-mono text-xs tabular-nums text-neutral-300">
+                    <TD className="text-right font-mono text-xs tabular-nums text-zinc-300">
                       {fmtScore(u.total_score)}
                     </TD>
                   </TR>

@@ -233,12 +233,12 @@ export default function DashboardPage() {
           {/* Grade distribution */}
           <Card>
             <CardHeader className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-neutral-100">Grade distribution</h2>
-              <span className="text-xs text-neutral-500">{totalGraded} graded</span>
+              <h2 className="text-sm font-semibold text-zinc-100">Grade distribution</h2>
+              <span className="text-xs text-zinc-500">{totalGraded} graded</span>
             </CardHeader>
             <CardBody>
               {totalGraded === 0 ? (
-                <p className="text-sm text-neutral-500">No graded updates yet for this workspace.</p>
+                <p className="text-sm text-zinc-500">No graded updates yet for this workspace.</p>
               ) : (
                 <div className="space-y-3">
                   {GRADE_ORDER.map((g) => {
@@ -248,7 +248,7 @@ export default function DashboardPage() {
                       g === 'A'
                         ? 'bg-emerald-400'
                         : g === 'B'
-                          ? 'bg-lime-400'
+                          ? 'bg-pink-400'
                           : g === 'C'
                             ? 'bg-amber-400'
                             : g === 'D'
@@ -257,10 +257,10 @@ export default function DashboardPage() {
                     return (
                       <div key={g} className="flex items-center gap-3">
                         <GradeBadge grade={g} />
-                        <div className="h-3 flex-1 overflow-hidden rounded-full bg-neutral-800">
+                        <div className="h-3 flex-1 overflow-hidden rounded-full bg-zinc-800">
                           <div className={`h-full ${bar}`} style={{ width: `${pct}%` }} />
                         </div>
-                        <span className="w-16 text-right text-xs tabular-nums text-neutral-400">
+                        <span className="w-16 text-right text-xs tabular-nums text-zinc-400">
                           {c} · {pct}%
                         </span>
                       </div>
@@ -275,11 +275,11 @@ export default function DashboardPage() {
             {/* Trend (SVG-free bar chart) */}
             <Card>
               <CardHeader>
-                <h2 className="text-sm font-semibold text-neutral-100">Grading trend</h2>
+                <h2 className="text-sm font-semibold text-zinc-100">Grading trend</h2>
               </CardHeader>
               <CardBody>
                 {trend.length === 0 ? (
-                  <p className="text-sm text-neutral-500">No trend data yet.</p>
+                  <p className="text-sm text-zinc-500">No trend data yet.</p>
                 ) : (
                   <div className="flex h-40 items-end gap-1">
                     {trend.map((t, i) => {
@@ -289,12 +289,12 @@ export default function DashboardPage() {
                         <div key={i} className="group flex flex-1 flex-col items-center gap-1">
                           <div className="flex w-full flex-1 items-end">
                             <div
-                              className="w-full rounded-t bg-lime-400/70 transition-colors group-hover:bg-lime-300"
+                              className="w-full rounded-t bg-pink-400/70 transition-colors group-hover:bg-pink-300"
                               style={{ height: `${Math.max(h, 2)}%` }}
                               title={`${t.label ?? t.date ?? ''}: ${v}`}
                             />
                           </div>
-                          <span className="truncate text-[9px] text-neutral-600">
+                          <span className="truncate text-[9px] text-zinc-600">
                             {(t.label ?? t.date ?? '').toString().slice(5, 10)}
                           </span>
                         </div>
@@ -308,30 +308,30 @@ export default function DashboardPage() {
             {/* Top risk */}
             <Card>
               <CardHeader className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-neutral-100">Top-risk updates</h2>
-                <Link href="/dashboard/queue" className="text-xs text-lime-300 hover:text-lime-200">
+                <h2 className="text-sm font-semibold text-zinc-100">Top-risk updates</h2>
+                <Link href="/dashboard/queue" className="text-xs text-pink-300 hover:text-pink-200">
                   View queue →
                 </Link>
               </CardHeader>
               <CardBody className="p-0">
                 {topRisk.length === 0 ? (
-                  <p className="px-5 py-4 text-sm text-neutral-500">No high-risk updates.</p>
+                  <p className="px-5 py-4 text-sm text-zinc-500">No high-risk updates.</p>
                 ) : (
-                  <ul className="divide-y divide-neutral-800">
+                  <ul className="divide-y divide-zinc-800">
                     {topRisk.slice(0, 6).map((u, i) => {
                       const id = u.update_id ?? u.id
                       const name = u.package_name ?? u.package ?? 'unknown'
                       const score = num(u.total_score ?? u.score)
                       const row = (
-                        <div className="flex items-center justify-between gap-3 px-5 py-3 hover:bg-neutral-900/60">
+                        <div className="flex items-center justify-between gap-3 px-5 py-3 hover:bg-zinc-900/60">
                           <div className="min-w-0">
-                            <div className="truncate text-sm font-medium text-neutral-100">{name}</div>
-                            <div className="truncate text-xs text-neutral-500">
+                            <div className="truncate text-sm font-medium text-zinc-100">{name}</div>
+                            <div className="truncate text-xs text-zinc-500">
                               {u.from_version ?? '?'} → {u.to_version ?? '?'}
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs tabular-nums text-neutral-400">{score.toFixed(0)}</span>
+                            <span className="text-xs tabular-nums text-zinc-400">{score.toFixed(0)}</span>
                             <GradeBadge grade={u.grade} />
                           </div>
                         </div>
@@ -351,14 +351,14 @@ export default function DashboardPage() {
           {/* Recent ledger */}
           <Card>
             <CardHeader className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-neutral-100">Recent decisions</h2>
-              <Link href="/dashboard/ledger" className="text-xs text-lime-300 hover:text-lime-200">
+              <h2 className="text-sm font-semibold text-zinc-100">Recent decisions</h2>
+              <Link href="/dashboard/ledger" className="text-xs text-pink-300 hover:text-pink-200">
                 Full ledger →
               </Link>
             </CardHeader>
             <CardBody className="p-0">
               {recentLedger.length === 0 ? (
-                <p className="px-5 py-4 text-sm text-neutral-500">No decisions recorded yet.</p>
+                <p className="px-5 py-4 text-sm text-zinc-500">No decisions recorded yet.</p>
               ) : (
                 <Table className="border-0">
                   <THead>
@@ -373,15 +373,15 @@ export default function DashboardPage() {
                   <TBody>
                     {recentLedger.slice(0, 8).map((l) => (
                       <TR key={l.id}>
-                        <TD className="font-medium text-neutral-100">{l.package_name ?? l.package ?? '—'}</TD>
+                        <TD className="font-medium text-zinc-100">{l.package_name ?? l.package ?? '—'}</TD>
                         <TD>
                           <Badge tone={decisionTone(l.decision)}>{l.decision ?? '—'}</Badge>
                         </TD>
                         <TD>
                           <GradeBadge grade={l.grade_at_decision} />
                         </TD>
-                        <TD className="text-neutral-400">{l.actor_id ?? 'system'}</TD>
-                        <TD className="text-neutral-500">{fmtDate(l.created_at)}</TD>
+                        <TD className="text-zinc-400">{l.actor_id ?? 'system'}</TD>
+                        <TD className="text-zinc-500">{fmtDate(l.created_at)}</TD>
                       </TR>
                     ))}
                   </TBody>
@@ -409,14 +409,14 @@ function Header({
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h1 className="text-xl font-bold tracking-tight text-neutral-50">Risk posture</h1>
-        <p className="text-sm text-neutral-500">Supply-chain grade overview across your tracked updates.</p>
+        <h1 className="text-xl font-bold tracking-tight text-zinc-50">Risk posture</h1>
+        <p className="text-sm text-zinc-500">Supply-chain grade overview across your tracked updates.</p>
       </div>
       <div className="flex items-center gap-2">
         <select
           value={workspaceId}
           onChange={(e) => onChange(e.target.value)}
-          className="rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-2 text-sm text-neutral-100 focus:outline-none focus:ring-2 focus:ring-lime-500/60"
+          className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 focus:outline-none focus:ring-2 focus:ring-pink-500/60"
         >
           {workspaces.length === 0 && <option value="">No workspaces</option>}
           {workspaces.map((w) => (

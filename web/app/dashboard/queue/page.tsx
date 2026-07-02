@@ -201,8 +201,8 @@ export default function QueuePage() {
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">Update review queue</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">Update review queue</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Pending and flagged dependency bumps awaiting a decision, ranked riskiest-first.
           </p>
         </div>
@@ -211,7 +211,7 @@ export default function QueuePage() {
             <select
               value={workspaceId}
               onChange={(e) => void switchWorkspace(e.target.value)}
-              className="rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-1.5 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -258,20 +258,20 @@ export default function QueuePage() {
                     <div className="flex flex-wrap items-center gap-2">
                       <Link
                         href={`/dashboard/updates/${u.id}`}
-                        className="truncate font-medium text-neutral-100 hover:text-lime-300"
+                        className="truncate font-medium text-zinc-100 hover:text-pink-300"
                       >
                         {pkgName}
                       </Link>
                       <Badge tone="neutral">{u.ecosystem}</Badge>
                       <Badge tone={COLUMN_TONE[u.status] ?? 'neutral'}>{COLUMN_LABEL[u.status] ?? u.status}</Badge>
                     </div>
-                    <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-neutral-500">
-                      <code className="rounded bg-neutral-950 px-1.5 py-0.5 text-neutral-400">{u.from_version}</code>
-                      <span className="text-lime-400">→</span>
-                      <code className="rounded bg-neutral-950 px-1.5 py-0.5 text-lime-300">{u.to_version}</code>
-                      <span className="text-neutral-600">·</span>
+                    <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-zinc-500">
+                      <code className="rounded bg-zinc-950 px-1.5 py-0.5 text-zinc-400">{u.from_version}</code>
+                      <span className="text-pink-400">→</span>
+                      <code className="rounded bg-zinc-950 px-1.5 py-0.5 text-pink-300">{u.to_version}</code>
+                      <span className="text-zinc-600">·</span>
                       <span>{u.bump_type} bump</span>
-                      <span className="text-neutral-600">·</span>
+                      <span className="text-zinc-600">·</span>
                       <span>in {projName}</span>
                     </div>
                   </div>
@@ -279,8 +279,8 @@ export default function QueuePage() {
 
                 <div className="flex shrink-0 items-center gap-3">
                   <div className="text-right">
-                    <div className="text-[10px] uppercase tracking-wide text-neutral-600">Score</div>
-                    <div className="text-sm font-semibold tabular-nums text-neutral-200">{fmtScore(u.total_score)}</div>
+                    <div className="text-[10px] uppercase tracking-wide text-zinc-600">Score</div>
+                    <div className="text-sm font-semibold tabular-nums text-zinc-200">{fmtScore(u.total_score)}</div>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
                     {QUICK_ACTIONS.map((a) => (
@@ -307,14 +307,14 @@ export default function QueuePage() {
       {/* Resolved columns summary */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-100">Resolved this workspace</h2>
+          <h2 className="text-sm font-semibold text-zinc-100">Resolved this workspace</h2>
         </CardHeader>
         <CardBody>
           <div className="grid grid-cols-3 gap-4 text-center">
             {(['approved', 'rejected', 'blocked'] as const).map((s) => (
-              <div key={s} className="rounded-lg border border-neutral-800 bg-neutral-950 px-4 py-3">
-                <div className="text-2xl font-semibold text-neutral-100">{(columns[s] ?? []).length}</div>
-                <div className="mt-0.5 text-xs uppercase tracking-wide text-neutral-500">{COLUMN_LABEL[s]}</div>
+              <div key={s} className="rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3">
+                <div className="text-2xl font-semibold text-zinc-100">{(columns[s] ?? []).length}</div>
+                <div className="mt-0.5 text-xs uppercase tracking-wide text-zinc-500">{COLUMN_LABEL[s]}</div>
               </div>
             ))}
           </div>

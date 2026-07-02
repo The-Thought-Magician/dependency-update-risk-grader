@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
+import { Work_Sans } from 'next/font/google'
 import './globals.css'
+import CommandPalette from '@/components/CommandPalette'
+
+const workSans = Work_Sans({ subsets: ['latin'], variable: '--font-work-sans' })
 
 export const metadata: Metadata = {
   title: 'DependencyUpdateRiskGrader',
@@ -8,8 +12,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="bg-neutral-950 text-neutral-100 min-h-screen antialiased">{children}</body>
+    <html lang="en" className={workSans.variable}>
+      <body className="bg-zinc-950 text-zinc-100 min-h-screen antialiased font-sans">
+        {children}
+        <CommandPalette />
+      </body>
     </html>
   )
 }

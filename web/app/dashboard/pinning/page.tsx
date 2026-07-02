@@ -183,8 +183,8 @@ export default function PinningPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6">
       <header>
-        <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">Pinning Advisor</h1>
-        <p className="mt-1 text-sm text-neutral-500">
+        <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">Pinning Advisor</h1>
+        <p className="mt-1 text-sm text-zinc-500">
           Per-package recommendations to pin, tighten ranges, or hold updates based on supply-chain risk signals.
         </p>
       </header>
@@ -195,7 +195,7 @@ export default function PinningPage() {
         </div>
       )}
       {notice && (
-        <div className="rounded-lg border border-lime-500/30 bg-lime-400/10 px-4 py-3 text-sm text-lime-300">
+        <div className="rounded-lg border border-pink-500/30 bg-pink-400/10 px-4 py-3 text-sm text-pink-300">
           {notice}
         </div>
       )}
@@ -210,21 +210,21 @@ export default function PinningPage() {
       {/* Generate */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-100">Generate Advice</h2>
+          <h2 className="text-sm font-semibold text-zinc-100">Generate Advice</h2>
         </CardHeader>
         <CardBody>
           {projects.length === 0 ? (
-            <p className="text-sm text-neutral-500">
+            <p className="text-sm text-zinc-500">
               No projects in this workspace yet. Add a project to generate pinning advice.
             </p>
           ) : (
             <div className="flex flex-wrap items-end gap-3">
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-medium uppercase tracking-wide text-neutral-500">Project</label>
+                <label className="text-xs font-medium uppercase tracking-wide text-zinc-500">Project</label>
                 <select
                   value={genProject}
                   onChange={(e) => setGenProject(e.target.value)}
-                  className="min-w-56 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-lime-500 focus:outline-none"
+                  className="min-w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-pink-500 focus:outline-none"
                 >
                   <option value="">Select a project…</option>
                   {projects.map((p) => (
@@ -250,12 +250,12 @@ export default function PinningPage() {
           placeholder="Search package, version, rationale…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="min-w-56 flex-1 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-lime-500 focus:outline-none"
+          className="min-w-56 flex-1 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-pink-500 focus:outline-none"
         />
         <select
           value={projectFilter}
           onChange={(e) => setProjectFilter(e.target.value)}
-          className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-lime-500 focus:outline-none"
+          className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-pink-500 focus:outline-none"
         >
           <option value="">All projects</option>
           {projects.map((p) => (
@@ -267,7 +267,7 @@ export default function PinningPage() {
         <select
           value={recFilter}
           onChange={(e) => setRecFilter(e.target.value)}
-          className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-lime-500 focus:outline-none"
+          className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-pink-500 focus:outline-none"
         >
           <option value="all">All recommendations</option>
           {recCategories.map((c) => (
@@ -289,9 +289,9 @@ export default function PinningPage() {
           }
         />
       ) : (
-        <div className="w-full overflow-x-auto rounded-xl border border-neutral-800">
+        <div className="w-full overflow-x-auto rounded-xl border border-zinc-800">
           <table className="w-full text-left text-sm">
-            <thead className="bg-neutral-900/80 text-xs uppercase tracking-wide text-neutral-500">
+            <thead className="bg-zinc-900/80 text-xs uppercase tracking-wide text-zinc-500">
               <tr>
                 <th className="px-4 py-3 font-medium">Package</th>
                 <th className="px-4 py-3 font-medium">Project</th>
@@ -301,20 +301,20 @@ export default function PinningPage() {
                 <th className="px-4 py-3 font-medium text-right">Detail</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-800">
+            <tbody className="divide-y divide-zinc-800">
               {filtered.map((a) => {
                 const meta = recommendationMeta(a.recommendation)
                 return (
-                  <tr key={a.id} className="hover:bg-neutral-900/60">
-                    <td className="px-4 py-3 font-medium text-neutral-200">
+                  <tr key={a.id} className="hover:bg-zinc-900/60">
+                    <td className="px-4 py-3 font-medium text-zinc-200">
                       {a.package_name ?? a.package ?? '—'}
                     </td>
-                    <td className="px-4 py-3 text-neutral-400">{a.project_name ?? projectName(a.project_id)}</td>
+                    <td className="px-4 py-3 text-zinc-400">{a.project_name ?? projectName(a.project_id)}</td>
                     <td className="px-4 py-3">
                       <Badge tone={meta.tone}>{meta.label}</Badge>
                     </td>
-                    <td className="px-4 py-3 font-mono text-xs text-lime-300">{a.suggested_version ?? '—'}</td>
-                    <td className="max-w-xs truncate px-4 py-3 text-neutral-400" title={a.rationale ?? ''}>
+                    <td className="px-4 py-3 font-mono text-xs text-pink-300">{a.suggested_version ?? '—'}</td>
+                    <td className="max-w-xs truncate px-4 py-3 text-zinc-400" title={a.rationale ?? ''}>
                       {a.rationale ?? '—'}
                     </td>
                     <td className="px-4 py-3 text-right">
@@ -348,30 +348,30 @@ export default function PinningPage() {
                 {recommendationMeta(detail.recommendation).label}
               </Badge>
               {detail.suggested_version && (
-                <span className="font-mono text-xs text-lime-300">→ {detail.suggested_version}</span>
+                <span className="font-mono text-xs text-pink-300">→ {detail.suggested_version}</span>
               )}
             </div>
             <div>
-              <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Project</div>
-              <div className="mt-0.5 text-neutral-200">{detail.project_name ?? projectName(detail.project_id)}</div>
+              <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Project</div>
+              <div className="mt-0.5 text-zinc-200">{detail.project_name ?? projectName(detail.project_id)}</div>
             </div>
             <div>
-              <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Rationale</div>
-              <p className="mt-0.5 whitespace-pre-wrap text-neutral-300">{detail.rationale ?? 'No rationale provided.'}</p>
+              <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Rationale</div>
+              <p className="mt-0.5 whitespace-pre-wrap text-zinc-300">{detail.rationale ?? 'No rationale provided.'}</p>
             </div>
             {detail.patch_snippet && (
               <div>
                 <div className="mb-1 flex items-center justify-between">
-                  <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Patch snippet</div>
+                  <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Patch snippet</div>
                   <button
                     type="button"
                     onClick={() => navigator.clipboard?.writeText(detail.patch_snippet ?? '')}
-                    className="text-xs text-lime-300 hover:text-lime-200"
+                    className="text-xs text-pink-300 hover:text-pink-200"
                   >
                     Copy
                   </button>
                 </div>
-                <pre className="overflow-x-auto rounded-lg border border-neutral-800 bg-neutral-950 p-3 font-mono text-xs text-neutral-300">
+                <pre className="overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 font-mono text-xs text-zinc-300">
                   {detail.patch_snippet}
                 </pre>
               </div>

@@ -197,8 +197,8 @@ export default function ReportsPage() {
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">Reports</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">Reports</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Generate point-in-time aggregations over your workspace risk data.
           </p>
         </div>
@@ -206,7 +206,7 @@ export default function ReportsPage() {
           <select
             value={workspaceId}
             onChange={(e) => void switchWorkspace(e.target.value)}
-            className="rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-1.5 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
           >
             {workspaces.map((w) => (
               <option key={w.id} value={w.id}>
@@ -233,7 +233,7 @@ export default function ReportsPage() {
       {/* Generator */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-100">Generate a report</h2>
+          <h2 className="text-sm font-semibold text-zinc-100">Generate a report</h2>
         </CardHeader>
         <CardBody>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -243,14 +243,14 @@ export default function ReportsPage() {
                 onClick={() => setGenType(t.value)}
                 className={`rounded-xl border p-4 text-left transition-colors ${
                   genType === t.value
-                    ? 'border-lime-500/40 bg-lime-400/10'
-                    : 'border-neutral-800 bg-neutral-950/40 hover:border-neutral-700'
+                    ? 'border-pink-500/40 bg-pink-400/10'
+                    : 'border-zinc-800 bg-zinc-950/40 hover:border-zinc-700'
                 }`}
               >
                 <div className="flex items-center gap-2">
                   <Badge tone={TYPE_TONE[t.value]}>{t.label}</Badge>
                 </div>
-                <p className="mt-2 text-xs text-neutral-500">{t.blurb}</p>
+                <p className="mt-2 text-xs text-zinc-500">{t.blurb}</p>
               </button>
             ))}
           </div>
@@ -272,7 +272,7 @@ export default function ReportsPage() {
       ) : (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-neutral-200">Saved reports</h2>
+            <h2 className="text-sm font-semibold text-zinc-200">Saved reports</h2>
           </CardHeader>
           <CardBody className="p-0">
             <Table>
@@ -287,11 +287,11 @@ export default function ReportsPage() {
               <TBody>
                 {reports.map((r) => (
                   <TR key={r.id}>
-                    <TD className="font-medium text-neutral-100">{r.title}</TD>
+                    <TD className="font-medium text-zinc-100">{r.title}</TD>
                     <TD>
                       <Badge tone={TYPE_TONE[r.type] ?? 'neutral'}>{typeLabel(r.type)}</Badge>
                     </TD>
-                    <TD className="text-xs text-neutral-500">{fmtDate(r.created_at)}</TD>
+                    <TD className="text-xs text-zinc-500">{fmtDate(r.created_at)}</TD>
                     <TD className="text-right">
                       <div className="flex justify-end gap-2">
                         <Button variant="secondary" onClick={() => void openReport(r)}>
@@ -361,7 +361,7 @@ function ReportContent({ report }: { report: Report }) {
     <div className="space-y-4 text-sm">
       <div className="flex items-center gap-2">
         <Badge tone={TYPE_TONE[report.type] ?? 'neutral'}>{typeLabel(report.type)}</Badge>
-        <span className="text-xs text-neutral-500">{fmtDate(report.created_at)}</span>
+        <span className="text-xs text-zinc-500">{fmtDate(report.created_at)}</span>
       </div>
       {report.type === 'project' && <ProjectReport data={data} />}
       {report.type === 'throughput' && <ThroughputReport data={data} />}
@@ -384,7 +384,7 @@ interface ProjectRow {
 
 function ProjectReport({ data }: { data: Record<string, unknown> }) {
   const projects = (data.projects as ProjectRow[] | undefined) ?? []
-  if (projects.length === 0) return <p className="text-neutral-500">No project data in this report.</p>
+  if (projects.length === 0) return <p className="text-zinc-500">No project data in this report.</p>
   return (
     <Table>
       <THead>
@@ -400,9 +400,9 @@ function ProjectReport({ data }: { data: Record<string, unknown> }) {
       <TBody>
         {projects.map((p) => (
           <TR key={p.project_id}>
-            <TD className="text-neutral-200">
+            <TD className="text-zinc-200">
               {p.project_name ?? p.project_id}
-              {p.ecosystem && <span className="ml-2 text-xs text-neutral-600">{p.ecosystem}</span>}
+              {p.ecosystem && <span className="ml-2 text-xs text-zinc-600">{p.ecosystem}</span>}
             </TD>
             <TD>
               <GradeBadge grade={p.worst_grade} />
@@ -454,10 +454,10 @@ function MaintainerReport({ data }: { data: Record<string, unknown> }) {
   const changes = (data.changes as MaintainerChange[] | undefined) ?? []
   const flagged = Number(data.flagged ?? changes.length)
   if (changes.length === 0)
-    return <p className="text-neutral-500">No maintainer changes detected across this workspace.</p>
+    return <p className="text-zinc-500">No maintainer changes detected across this workspace.</p>
   return (
     <div className="space-y-3">
-      <div className="text-xs text-neutral-500">{flagged} update(s) introduced or removed a maintainer.</div>
+      <div className="text-xs text-zinc-500">{flagged} update(s) introduced or removed a maintainer.</div>
       <Table>
         <THead>
           <TR>
@@ -469,9 +469,9 @@ function MaintainerReport({ data }: { data: Record<string, unknown> }) {
         <TBody>
           {changes.map((ch) => (
             <TR key={ch.update_id}>
-              <TD className="text-neutral-200">
+              <TD className="text-zinc-200">
                 {ch.package_name ?? '–'}
-                <span className="ml-2 text-xs text-neutral-600">
+                <span className="ml-2 text-xs text-zinc-600">
                   {ch.from_version} → {ch.to_version}
                 </span>
               </TD>
@@ -483,7 +483,7 @@ function MaintainerReport({ data }: { data: Record<string, unknown> }) {
                   {(ch.added_maintainers ?? []).map((m) => (
                     <code
                       key={m.username}
-                      className="rounded bg-neutral-950 px-1.5 py-0.5 text-xs text-neutral-300"
+                      className="rounded bg-zinc-950 px-1.5 py-0.5 text-xs text-zinc-300"
                       title={`trust ${m.trust_score}`}
                     >
                       {m.username}
@@ -491,7 +491,7 @@ function MaintainerReport({ data }: { data: Record<string, unknown> }) {
                   ))}
                   {ch.low_trust_introduced && <Badge tone="red">low trust</Badge>}
                   {(ch.added_maintainers ?? []).length === 0 && (
-                    <span className="text-xs text-neutral-600">none added</span>
+                    <span className="text-xs text-zinc-600">none added</span>
                   )}
                 </div>
               </TD>

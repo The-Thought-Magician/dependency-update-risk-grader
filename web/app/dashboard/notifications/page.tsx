@@ -141,8 +141,8 @@ export default function NotificationsPage() {
     <div className="mx-auto max-w-4xl space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">Notifications</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">Notifications</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Personal updates from your workspaces: graded bumps, decisions, alerts and reports.
           </p>
         </div>
@@ -158,13 +158,13 @@ export default function NotificationsPage() {
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <div className="inline-flex rounded-lg border border-neutral-800 bg-neutral-900 p-0.5">
+        <div className="inline-flex rounded-lg border border-zinc-800 bg-zinc-900 p-0.5">
           {(['all', 'unread', 'read'] as Filter[]).map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
               className={`rounded-md px-3 py-1.5 text-sm font-medium capitalize transition-colors ${
-                filter === f ? 'bg-lime-400 text-neutral-950' : 'text-neutral-400 hover:text-neutral-200'
+                filter === f ? 'bg-pink-400 text-zinc-950' : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
               {f}
@@ -176,7 +176,7 @@ export default function NotificationsPage() {
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
-            className="rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
           >
             <option value="all">All types</option>
             {types.map((t) => (
@@ -210,19 +210,19 @@ export default function NotificationsPage() {
             const inner = (
               <div className="flex items-start gap-3">
                 {!n.is_read ? (
-                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-lime-400" aria-label="Unread" />
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-pink-400" aria-label="Unread" />
                 ) : (
-                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-neutral-700" aria-hidden="true" />
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-zinc-700" aria-hidden="true" />
                 )}
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className={`font-medium ${n.is_read ? 'text-neutral-300' : 'text-neutral-100'}`}>
+                    <span className={`font-medium ${n.is_read ? 'text-zinc-300' : 'text-zinc-100'}`}>
                       {n.title}
                     </span>
                     <Badge tone={typeTone(n.type)}>{n.type.replace(/_/g, ' ')}</Badge>
-                    <span className="ml-auto text-xs text-neutral-600">{relativeTime(n.created_at)}</span>
+                    <span className="ml-auto text-xs text-zinc-600">{relativeTime(n.created_at)}</span>
                   </div>
-                  {n.body && <p className="mt-1 text-sm text-neutral-400">{n.body}</p>}
+                  {n.body && <p className="mt-1 text-sm text-zinc-400">{n.body}</p>}
                 </div>
                 {!n.is_read && (
                   <Button
@@ -242,7 +242,7 @@ export default function NotificationsPage() {
               <Card
                 key={n.id}
                 className={`px-4 py-3 transition-colors ${
-                  n.is_read ? '' : 'border-lime-500/20 bg-lime-400/[0.03]'
+                  n.is_read ? '' : 'border-pink-500/20 bg-pink-400/[0.03]'
                 }`}
               >
                 {n.link ? (

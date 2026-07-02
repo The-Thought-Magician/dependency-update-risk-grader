@@ -62,7 +62,7 @@ type Summary = {
 }
 
 const INPUT =
-  'w-full rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-lime-500/50 focus:outline-none'
+  'w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-pink-500/50 focus:outline-none'
 const GRADE_ORDER = ['A', 'B', 'C', 'D', 'F']
 const ECOSYSTEMS = ['npm', 'pypi', 'cargo', 'maven', 'go', 'rubygems', 'nuget']
 const MANIFEST_HINTS: Record<string, string> = {
@@ -271,13 +271,13 @@ export default function ProjectDetailPage() {
     <div className="mx-auto flex max-w-6xl flex-col gap-6">
       {/* Header */}
       <div className="flex flex-col gap-3">
-        <Link href="/dashboard/projects" className="text-xs text-neutral-500 hover:text-lime-300">
+        <Link href="/dashboard/projects" className="text-xs text-zinc-500 hover:text-pink-300">
           ← Projects
         </Link>
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">{project.name}</h1>
+              <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">{project.name}</h1>
               <Badge tone="lime">{project.ecosystem}</Badge>
             </div>
             {project.repo_url ? (
@@ -285,12 +285,12 @@ export default function ProjectDetailPage() {
                 href={project.repo_url}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-1 inline-block break-all text-sm text-neutral-400 hover:text-lime-300"
+                className="mt-1 inline-block break-all text-sm text-zinc-400 hover:text-pink-300"
               >
                 {project.repo_url}
               </a>
             ) : (
-              <p className="mt-1 text-sm text-neutral-600">No repository linked</p>
+              <p className="mt-1 text-sm text-zinc-600">No repository linked</p>
             )}
             {(project.tags ?? []).length > 0 && (
               <div className="mt-2 flex flex-wrap gap-1.5">
@@ -322,11 +322,11 @@ export default function ProjectDetailPage() {
       {/* Risk posture */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-200">Risk posture</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Risk posture</h2>
         </CardHeader>
         <CardBody>
           {Object.keys(gradeBuckets).length === 0 ? (
-            <p className="text-sm text-neutral-500">
+            <p className="text-sm text-zinc-500">
               No graded updates yet for this project. Risk grades appear once update bumps are evaluated.
             </p>
           ) : (
@@ -336,7 +336,7 @@ export default function ProjectDetailPage() {
             <div className="mt-4 flex flex-wrap gap-2">
               {Object.entries(summary.counts).map(([k, v]) => (
                 <Badge key={k} tone="neutral">
-                  {k}: <span className="font-semibold text-neutral-200">{v}</span>
+                  {k}: <span className="font-semibold text-zinc-200">{v}</span>
                 </Badge>
               ))}
             </div>
@@ -348,7 +348,7 @@ export default function ProjectDetailPage() {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-neutral-200">Manifests</h2>
+            <h2 className="text-sm font-semibold text-zinc-200">Manifests</h2>
             <Button variant="ghost" onClick={openUpload}>
               + Upload
             </Button>
@@ -378,13 +378,13 @@ export default function ProjectDetailPage() {
               <TBody>
                 {manifests.map((m) => (
                   <TR key={m.id}>
-                    <TD className="font-medium text-neutral-100">{m.filename}</TD>
+                    <TD className="font-medium text-zinc-100">{m.filename}</TD>
                     <TD>
                       <Badge tone="lime">{m.ecosystem}</Badge>
                     </TD>
                     <TD>{m.kind}</TD>
                     <TD>{m.parsed ? Object.keys(m.parsed).length : 0}</TD>
-                    <TD className="text-neutral-500">
+                    <TD className="text-zinc-500">
                       {m.created_at ? new Date(m.created_at).toLocaleDateString() : '—'}
                     </TD>
                     <TD className="text-right">
@@ -402,23 +402,23 @@ export default function ProjectDetailPage() {
       <Card>
         <CardHeader>
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-sm font-semibold text-neutral-200">Dependency inventory</h2>
+            <h2 className="text-sm font-semibold text-zinc-200">Dependency inventory</h2>
             <div className="flex flex-wrap items-center gap-2">
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Filter packages..."
-                className="w-48 rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-lime-500/50 focus:outline-none"
+                className="w-48 rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-pink-500/50 focus:outline-none"
               />
-              <div className="flex overflow-hidden rounded-lg border border-neutral-800">
+              <div className="flex overflow-hidden rounded-lg border border-zinc-800">
                 {(['all', 'direct', 'dev'] as const).map((s) => (
                   <button
                     key={s}
                     onClick={() => setScope(s)}
                     className={`px-3 py-1.5 text-xs font-medium capitalize transition-colors ${
                       scope === s
-                        ? 'bg-lime-400/15 text-lime-300'
-                        : 'text-neutral-400 hover:bg-neutral-800 hover:text-neutral-200'
+                        ? 'bg-pink-400/15 text-pink-300'
+                        : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
                     }`}
                   >
                     {s}
@@ -456,16 +456,16 @@ export default function ProjectDetailPage() {
               <TBody>
                 {filteredDeps.map((d) => (
                   <TR key={d.id}>
-                    <TD className="font-medium text-neutral-100">
-                      <Link href={`/dashboard/packages/${d.package_id}`} className="hover:text-lime-300">
+                    <TD className="font-medium text-zinc-100">
+                      <Link href={`/dashboard/packages/${d.package_id}`} className="hover:text-pink-300">
                         {depName(d)}
                       </Link>
                       {d.reputation_tier && (
-                        <span className="ml-2 text-xs text-neutral-600">{d.reputation_tier}</span>
+                        <span className="ml-2 text-xs text-zinc-600">{d.reputation_tier}</span>
                       )}
                     </TD>
                     <TD className="font-mono text-xs">{d.current_version}</TD>
-                    <TD className="font-mono text-xs text-neutral-500">{d.version_range || '—'}</TD>
+                    <TD className="font-mono text-xs text-zinc-500">{d.version_range || '—'}</TD>
                     <TD>
                       <div className="flex gap-1">
                         <Badge tone={d.is_direct ? 'lime' : 'neutral'}>{d.is_direct ? 'direct' : 'transitive'}</Badge>
@@ -478,11 +478,11 @@ export default function ProjectDetailPage() {
                         {d.is_archived && <Badge tone="amber">archived</Badge>}
                         {d.typosquat_suspect && <Badge tone="red">typosquat?</Badge>}
                         {!d.is_deprecated && !d.is_archived && !d.typosquat_suspect && (
-                          <span className="text-xs text-neutral-600">—</span>
+                          <span className="text-xs text-zinc-600">—</span>
                         )}
                       </div>
                     </TD>
-                    <TD>{d.grade ? <GradeBadge grade={d.grade} /> : <span className="text-neutral-600">—</span>}</TD>
+                    <TD>{d.grade ? <GradeBadge grade={d.grade} /> : <span className="text-zinc-600">—</span>}</TD>
                   </TR>
                 ))}
               </TBody>
@@ -610,7 +610,7 @@ export default function ProjectDetailPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-1">
-      <span className="text-xs font-medium text-neutral-400">{label}</span>
+      <span className="text-xs font-medium text-zinc-400">{label}</span>
       {children}
     </label>
   )
@@ -628,23 +628,23 @@ function GradeBars({ buckets }: { buckets: Record<string, number> }) {
           <div className="w-8">
             <GradeBadge grade={g} />
           </div>
-          <div className="h-3 flex-1 overflow-hidden rounded-full bg-neutral-800">
+          <div className="h-3 flex-1 overflow-hidden rounded-full bg-zinc-800">
             <div
               className={`h-full rounded-full ${
                 gradeTone(g) === 'green'
                   ? 'bg-emerald-500'
                   : gradeTone(g) === 'lime'
-                  ? 'bg-lime-400'
+                  ? 'bg-pink-400'
                   : gradeTone(g) === 'amber'
                   ? 'bg-amber-400'
                   : gradeTone(g) === 'red'
                   ? 'bg-red-500'
-                  : 'bg-neutral-600'
+                  : 'bg-zinc-600'
               }`}
               style={{ width: `${(n / max) * 100}%` }}
             />
           </div>
-          <div className="w-8 text-right text-sm font-semibold text-neutral-300">{n}</div>
+          <div className="w-8 text-right text-sm font-semibold text-zinc-300">{n}</div>
         </div>
       ))}
     </div>

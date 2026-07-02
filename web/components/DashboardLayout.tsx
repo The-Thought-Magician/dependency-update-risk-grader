@@ -4,51 +4,25 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { authClient } from '@/lib/auth/client'
 
-type NavItem = { label: string; href: string }
-type NavSection = { title: string; items: NavItem[] }
+type NavItem = { label: string; href: string; icon: string }
 
-const NAV: NavSection[] = [
-  { title: 'Overview', items: [{ label: 'Dashboard', href: '/dashboard' }] },
-  {
-    title: 'Triage',
-    items: [
-      { label: 'Update Queue', href: '/dashboard/queue' },
-      { label: 'Updates', href: '/dashboard/updates' },
-    ],
-  },
-  {
-    title: 'Inventory',
-    items: [
-      { label: 'Projects', href: '/dashboard/projects' },
-      { label: 'Packages', href: '/dashboard/packages' },
-      { label: 'Maintainers', href: '/dashboard/maintainers' },
-    ],
-  },
-  {
-    title: 'Governance',
-    items: [
-      { label: 'Policies', href: '/dashboard/policies' },
-      { label: 'Risk Rules', href: '/dashboard/rules' },
-      { label: 'Pinning Advisor', href: '/dashboard/pinning' },
-      { label: 'Decision Ledger', href: '/dashboard/ledger' },
-    ],
-  },
-  {
-    title: 'Intelligence',
-    items: [
-      { label: 'Incident Replays', href: '/dashboard/incidents' },
-      { label: 'Alerts', href: '/dashboard/alerts' },
-      { label: 'Reports', href: '/dashboard/reports' },
-    ],
-  },
-  {
-    title: 'Settings',
-    items: [
-      { label: 'Notifications', href: '/dashboard/notifications' },
-      { label: 'Webhooks', href: '/dashboard/webhooks' },
-      { label: 'Settings', href: '/dashboard/settings' },
-    ],
-  },
+const NAV: NavItem[] = [
+  { label: 'Dashboard', href: '/dashboard', icon: '⌂' },
+  { label: 'Update Queue', href: '/dashboard/queue', icon: '☰' },
+  { label: 'Updates', href: '/dashboard/updates', icon: '↑' },
+  { label: 'Projects', href: '/dashboard/projects', icon: '▣' },
+  { label: 'Packages', href: '/dashboard/packages', icon: '◫' },
+  { label: 'Maintainers', href: '/dashboard/maintainers', icon: '◍' },
+  { label: 'Policies', href: '/dashboard/policies', icon: '⚑' },
+  { label: 'Risk Rules', href: '/dashboard/rules', icon: '⚠' },
+  { label: 'Pinning Advisor', href: '/dashboard/pinning', icon: '📌' },
+  { label: 'Decision Ledger', href: '/dashboard/ledger', icon: '≡' },
+  { label: 'Incident Replays', href: '/dashboard/incidents', icon: '↻' },
+  { label: 'Alerts', href: '/dashboard/alerts', icon: '◉' },
+  { label: 'Reports', href: '/dashboard/reports', icon: '▤' },
+  { label: 'Notifications', href: '/dashboard/notifications', icon: '🔔' },
+  { label: 'Webhooks', href: '/dashboard/webhooks', icon: '⇄' },
+  { label: 'Settings', href: '/dashboard/settings', icon: '⚙' },
 ]
 
 function isActive(pathname: string, href: string) {
@@ -85,77 +59,74 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
   if (!ready) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-neutral-950 text-neutral-500">
-        <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-neutral-700 border-t-lime-400" />
+      <div className="flex min-h-screen items-center justify-center bg-zinc-950 text-zinc-500">
+        <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-zinc-700 border-t-pink-400" />
       </div>
     )
   }
 
-  const sidebar = (
-    <nav className="flex h-full flex-col gap-6 overflow-y-auto px-3 py-5">
-      <Link href="/dashboard" className="flex items-center gap-2 px-2">
-        <span className="flex h-7 w-7 items-center justify-center rounded-md bg-lime-400 text-sm font-black text-neutral-950">
-          D
-        </span>
-        <span className="text-sm font-bold tracking-tight text-neutral-100">DependencyUpdateRiskGrader</span>
+  const rail = (
+    <nav className="flex h-full flex-col items-center gap-3 overflow-y-auto py-5">
+      <Link
+        href="/dashboard"
+        className="flex h-8 w-8 items-center justify-center rounded-md bg-pink-400 text-sm font-black text-zinc-950"
+      >
+        D
       </Link>
-      <div className="flex flex-col gap-5">
-        {NAV.map((section) => (
-          <div key={section.title}>
-            <div className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-neutral-600">
-              {section.title}
-            </div>
-            <div className="flex flex-col gap-0.5">
-              {section.items.map((item) => {
-                const active = isActive(pathname, item.href)
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setDrawerOpen(false)}
-                    className={`rounded-lg px-3 py-2 text-sm transition-colors ${
-                      active
-                        ? 'bg-lime-400/10 font-medium text-lime-300'
-                        : 'text-neutral-400 hover:bg-neutral-800 hover:text-neutral-100'
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-        ))}
+      <div className="mt-2 flex flex-col items-center gap-1">
+        {NAV.map((item) => {
+          const active = isActive(pathname, item.href)
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setDrawerOpen(false)}
+              title={item.label}
+              aria-label={item.label}
+              className={`group relative flex h-9 w-9 items-center justify-center rounded-lg text-base transition-colors ${
+                active ? 'bg-pink-400/10 text-pink-300' : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100'
+              }`}
+            >
+              <span aria-hidden="true">{item.icon}</span>
+              <span className="pointer-events-none absolute left-full ml-2 hidden whitespace-nowrap rounded-md border border-zinc-800 bg-zinc-900 px-2 py-1 text-xs text-zinc-200 shadow-lg group-hover:block">
+                {item.label}
+              </span>
+            </Link>
+          )
+        })}
       </div>
     </nav>
   )
 
   return (
-    <div className="flex min-h-screen bg-neutral-950">
-      <aside className="hidden w-64 shrink-0 border-r border-neutral-800 bg-neutral-900/40 md:block">{sidebar}</aside>
+    <div className="flex min-h-screen bg-zinc-950">
+      <aside className="hidden w-14 shrink-0 border-r border-zinc-800 bg-zinc-900/40 md:block">{rail}</aside>
 
       {drawerOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           <div className="absolute inset-0 bg-black/60" onClick={() => setDrawerOpen(false)} aria-hidden="true" />
-          <aside className="absolute left-0 top-0 h-full w-64 border-r border-neutral-800 bg-neutral-900">{sidebar}</aside>
+          <aside className="absolute left-0 top-0 h-full w-14 border-r border-zinc-800 bg-zinc-900">{rail}</aside>
         </div>
       )}
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex items-center justify-between border-b border-neutral-800 bg-neutral-950/80 px-4 py-3 backdrop-blur md:px-6">
+        <header className="flex items-center justify-between border-b border-zinc-800 bg-zinc-950/80 px-4 py-3 backdrop-blur md:px-6">
           <div className="flex items-center gap-3">
             <button
-              className="rounded-md p-1.5 text-neutral-400 hover:bg-neutral-800 hover:text-neutral-100 md:hidden"
+              className="rounded-md p-1.5 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100 md:hidden"
               onClick={() => setDrawerOpen(true)}
               aria-label="Open navigation"
             >
               ☰
             </button>
-            <span className="text-sm font-medium text-neutral-300">Workspace</span>
+            <span className="text-sm font-medium text-zinc-300">Workspace</span>
+            <span className="hidden items-center gap-1 rounded-md border border-zinc-800 px-2 py-1 text-xs text-zinc-500 sm:flex">
+              Press <kbd className="rounded bg-zinc-800 px-1 py-0.5 text-zinc-300">⌘K</kbd> to jump anywhere
+            </span>
           </div>
           <button
             onClick={signOut}
-            className="rounded-lg border border-neutral-700 bg-neutral-800 px-3 py-1.5 text-sm text-neutral-200 transition-colors hover:bg-neutral-700"
+            className="rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-sm text-zinc-200 transition-colors hover:bg-zinc-700"
           >
             Sign out
           </button>

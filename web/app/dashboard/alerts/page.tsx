@@ -289,8 +289,8 @@ export default function AlertsPage() {
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">Alerts</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">Alerts</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Real-time supply-chain alerts and the rules that trigger them.
           </p>
         </div>
@@ -298,7 +298,7 @@ export default function AlertsPage() {
           <select
             value={workspaceId}
             onChange={(e) => void switchWorkspace(e.target.value)}
-            className="rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-1.5 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
           >
             {workspaces.map((w) => (
               <option key={w.id} value={w.id}>
@@ -316,13 +316,13 @@ export default function AlertsPage() {
         <Stat label="Active rules" value={stats.activeRules} />
       </div>
 
-      <div className="flex items-center gap-1 border-b border-neutral-800">
+      <div className="flex items-center gap-1 border-b border-zinc-800">
         <button
           onClick={() => setTab('feed')}
           className={`-mb-px border-b-2 px-4 py-2 text-sm font-medium transition-colors ${
             tab === 'feed'
-              ? 'border-lime-400 text-lime-300'
-              : 'border-transparent text-neutral-500 hover:text-neutral-300'
+              ? 'border-pink-400 text-pink-300'
+              : 'border-transparent text-zinc-500 hover:text-zinc-300'
           }`}
         >
           Alert feed
@@ -331,8 +331,8 @@ export default function AlertsPage() {
           onClick={() => setTab('rules')}
           className={`-mb-px border-b-2 px-4 py-2 text-sm font-medium transition-colors ${
             tab === 'rules'
-              ? 'border-lime-400 text-lime-300'
-              : 'border-transparent text-neutral-500 hover:text-neutral-300'
+              ? 'border-pink-400 text-pink-300'
+              : 'border-transparent text-zinc-500 hover:text-zinc-300'
           }`}
         >
           Alert rules ({rules.length})
@@ -351,7 +351,7 @@ export default function AlertsPage() {
             <select
               value={severityFilter}
               onChange={(e) => setSeverityFilter(e.target.value)}
-              className="rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
             >
               <option value="all">All severities</option>
               {severities.map((s) => (
@@ -360,12 +360,12 @@ export default function AlertsPage() {
                 </option>
               ))}
             </select>
-            <label className="flex items-center gap-2 text-sm text-neutral-400">
+            <label className="flex items-center gap-2 text-sm text-zinc-400">
               <input
                 type="checkbox"
                 checked={showResolved}
                 onChange={(e) => setShowResolved(e.target.checked)}
-                className="h-4 w-4 rounded border-neutral-700 bg-neutral-900 accent-lime-400"
+                className="h-4 w-4 rounded border-zinc-700 bg-zinc-900 accent-pink-400"
               />
               Show resolved
             </label>
@@ -391,7 +391,7 @@ export default function AlertsPage() {
                   <div
                     className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${
                       a.is_resolved
-                        ? 'bg-neutral-600'
+                        ? 'bg-zinc-600'
                         : ['critical', 'high'].includes(a.severity.toLowerCase())
                           ? 'bg-red-400'
                           : 'bg-amber-400'
@@ -399,15 +399,15 @@ export default function AlertsPage() {
                   />
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-medium text-neutral-100">{a.title}</span>
+                      <span className="font-medium text-zinc-100">{a.title}</span>
                       <Badge tone={severityTone(a.severity)}>{a.severity}</Badge>
                       {a.is_resolved && <Badge tone="green">resolved</Badge>}
                     </div>
-                    {a.message && <p className="mt-1 text-sm text-neutral-400">{a.message}</p>}
-                    <div className="mt-1 flex items-center gap-3 text-xs text-neutral-600">
+                    {a.message && <p className="mt-1 text-sm text-zinc-400">{a.message}</p>}
+                    <div className="mt-1 flex items-center gap-3 text-xs text-zinc-600">
                       <span>{new Date(a.created_at).toLocaleString()}</span>
                       {a.update_id && (
-                        <a href={`/dashboard/updates/${a.update_id}`} className="text-lime-400 hover:underline">
+                        <a href={`/dashboard/updates/${a.update_id}`} className="text-pink-400 hover:underline">
                           View update
                         </a>
                       )}
@@ -454,16 +454,16 @@ export default function AlertsPage() {
               <TBody>
                 {rules.map((r) => (
                   <TR key={r.id}>
-                    <TD className="font-medium text-neutral-100">{r.name}</TD>
+                    <TD className="font-medium text-zinc-100">{r.name}</TD>
                     <TD>
                       {TRIGGER_TYPES.find((t) => t.value === r.trigger_type)?.label ??
                         r.trigger_type.replace(/_/g, ' ')}
                     </TD>
                     <TD>
                       {r.threshold ? (
-                        <code className="rounded bg-neutral-800 px-1.5 py-0.5 text-xs">{r.threshold}</code>
+                        <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-xs">{r.threshold}</code>
                       ) : (
-                        <span className="text-neutral-600">—</span>
+                        <span className="text-zinc-600">—</span>
                       )}
                     </TD>
                     <TD>
@@ -474,11 +474,11 @@ export default function AlertsPage() {
                         onClick={() => void toggleRule(r)}
                         className={`inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-xs font-medium ${
                           r.enabled
-                            ? 'border-lime-500/30 bg-lime-400/15 text-lime-300'
-                            : 'border-neutral-700 bg-neutral-800 text-neutral-400'
+                            ? 'border-pink-500/30 bg-pink-400/15 text-pink-300'
+                            : 'border-zinc-700 bg-zinc-800 text-zinc-400'
                         }`}
                       >
-                        <span className={`h-1.5 w-1.5 rounded-full ${r.enabled ? 'bg-lime-400' : 'bg-neutral-500'}`} />
+                        <span className={`h-1.5 w-1.5 rounded-full ${r.enabled ? 'bg-pink-400' : 'bg-zinc-500'}`} />
                         {r.enabled ? 'Enabled' : 'Disabled'}
                       </button>
                     </TD>
@@ -522,23 +522,23 @@ export default function AlertsPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
             <input
               value={ruleForm.name}
               onChange={(e) => setRuleForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="e.g. Block anything graded below C"
-              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-lime-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-pink-500 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Trigger
               </label>
               <select
                 value={ruleForm.trigger_type}
                 onChange={(e) => setRuleForm((f) => ({ ...f, trigger_type: e.target.value }))}
-                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
               >
                 {TRIGGER_TYPES.map((t) => (
                   <option key={t.value} value={t.value}>
@@ -548,23 +548,23 @@ export default function AlertsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Threshold
               </label>
               <input
                 value={ruleForm.threshold}
                 onChange={(e) => setRuleForm((f) => ({ ...f, threshold: e.target.value }))}
                 placeholder="e.g. C or 60"
-                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-lime-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-pink-500 focus:outline-none"
               />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">Channel</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Channel</label>
             <select
               value={ruleForm.channel}
               onChange={(e) => setRuleForm((f) => ({ ...f, channel: e.target.value }))}
-              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
             >
               {CHANNELS.map((c) => (
                 <option key={c.value} value={c.value}>
@@ -575,23 +575,23 @@ export default function AlertsPage() {
           </div>
           {needsWebhook && (
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Webhook URL
               </label>
               <input
                 value={ruleForm.webhook_url}
                 onChange={(e) => setRuleForm((f) => ({ ...f, webhook_url: e.target.value }))}
                 placeholder="https://hooks.example.com/..."
-                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-lime-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-pink-500 focus:outline-none"
               />
             </div>
           )}
-          <label className="flex items-center gap-2 text-sm text-neutral-300">
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={ruleForm.enabled}
               onChange={(e) => setRuleForm((f) => ({ ...f, enabled: e.target.checked }))}
-              className="h-4 w-4 rounded border-neutral-700 bg-neutral-900 accent-lime-400"
+              className="h-4 w-4 rounded border-zinc-700 bg-zinc-900 accent-pink-400"
             />
             Enabled
           </label>

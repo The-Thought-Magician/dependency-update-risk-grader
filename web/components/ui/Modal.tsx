@@ -28,14 +28,14 @@ export function Modal({ open, onClose, title, children, footer, className = '' }
       <div
         role="dialog"
         aria-modal="true"
-        className={`relative z-10 w-full max-w-lg rounded-xl border border-neutral-800 bg-neutral-900 shadow-2xl ${className}`}
+        className={`relative z-10 w-full max-w-lg rounded-xl border border-zinc-800 bg-zinc-900 shadow-2xl ${className}`}
       >
         {title != null && (
-          <div className="flex items-center justify-between border-b border-neutral-800 px-5 py-4">
-            <h2 className="text-base font-semibold text-neutral-100">{title}</h2>
+          <div className="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
+            <h2 className="text-base font-semibold text-zinc-100">{title}</h2>
             <button
               onClick={onClose}
-              className="rounded-md p-1 text-neutral-500 hover:bg-neutral-800 hover:text-neutral-200"
+              className="rounded-md p-1 text-zinc-500 hover:bg-zinc-800 hover:text-zinc-200"
               aria-label="Close"
             >
               ✕
@@ -43,7 +43,7 @@ export function Modal({ open, onClose, title, children, footer, className = '' }
           </div>
         )}
         <div className="px-5 py-4">{children}</div>
-        {footer != null && <div className="flex justify-end gap-2 border-t border-neutral-800 px-5 py-4">{footer}</div>}
+        {footer != null && <div className="flex justify-end gap-2 border-t border-zinc-800 px-5 py-4">{footer}</div>}
       </div>
     </div>
   )

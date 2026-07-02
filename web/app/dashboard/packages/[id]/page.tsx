@@ -171,13 +171,13 @@ export default function PackageProfilePage() {
     <div className="mx-auto flex max-w-6xl flex-col gap-6">
       {/* Header */}
       <div className="flex flex-col gap-3">
-        <Link href="/dashboard/packages" className="text-xs text-neutral-500 hover:text-lime-300">
+        <Link href="/dashboard/packages" className="text-xs text-zinc-500 hover:text-pink-300">
           ← Packages
         </Link>
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="break-all text-2xl font-semibold tracking-tight text-neutral-100">{pkg.name}</h1>
+              <h1 className="break-all text-2xl font-semibold tracking-tight text-zinc-100">{pkg.name}</h1>
               <Badge tone="lime">{pkg.ecosystem}</Badge>
               <Badge tone={TIER_TONE[pkg.reputation_tier] ?? 'neutral'}>{pkg.reputation_tier}</Badge>
             </div>
@@ -186,12 +186,12 @@ export default function PackageProfilePage() {
                 href={pkg.repo_url}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-1 inline-block break-all text-sm text-neutral-400 hover:text-lime-300"
+                className="mt-1 inline-block break-all text-sm text-zinc-400 hover:text-pink-300"
               >
                 {pkg.repo_url}
               </a>
             ) : (
-              <p className="mt-1 text-sm text-neutral-600">No repository linked</p>
+              <p className="mt-1 text-sm text-zinc-600">No repository linked</p>
             )}
           </div>
           {flagged && (
@@ -219,11 +219,11 @@ export default function PackageProfilePage() {
       {/* Cadence chart */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-200">Release cadence</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Release cadence</h2>
         </CardHeader>
         <CardBody>
           {cadence.length === 0 ? (
-            <p className="text-sm text-neutral-500">No dated version history available for cadence analysis.</p>
+            <p className="text-sm text-zinc-500">No dated version history available for cadence analysis.</p>
           ) : (
             <CadenceChart data={cadence} />
           )}
@@ -233,15 +233,15 @@ export default function PackageProfilePage() {
       {/* Publish-hour histogram */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-200">Publish-hour distribution (UTC)</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Publish-hour distribution (UTC)</h2>
         </CardHeader>
         <CardBody>
           {hourHistogram.every((n) => n === 0) ? (
-            <p className="text-sm text-neutral-500">No publish-time data available.</p>
+            <p className="text-sm text-zinc-500">No publish-time data available.</p>
           ) : (
             <HourHistogram buckets={hourHistogram} />
           )}
-          <p className="mt-2 text-xs text-neutral-600">
+          <p className="mt-2 text-xs text-zinc-600">
             Clusters of off-hours publishes can indicate compromised or automated releases.
           </p>
         </CardBody>
@@ -250,7 +250,7 @@ export default function PackageProfilePage() {
       {/* Versions */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-200">Version history</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Version history</h2>
         </CardHeader>
         <CardBody className="p-0">
           {versions.length === 0 ? (
@@ -278,8 +278,8 @@ export default function PackageProfilePage() {
                   const scriptCount = v.install_scripts ? Object.keys(v.install_scripts).length : 0
                   return (
                     <TR key={v.id}>
-                      <TD className="font-mono text-xs font-medium text-neutral-100">{v.version}</TD>
-                      <TD className="text-xs text-neutral-500">
+                      <TD className="font-mono text-xs font-medium text-zinc-100">{v.version}</TD>
+                      <TD className="text-xs text-zinc-500">
                         {v.published_at ? new Date(v.published_at).toLocaleDateString() : '—'}
                       </TD>
                       <TD>{v.has_provenance ? <Badge tone="green">yes</Badge> : <Badge tone="neutral">no</Badge>}</TD>
@@ -301,10 +301,10 @@ export default function PackageProfilePage() {
                         {scriptCount > 0 ? (
                           <Badge tone="amber">{scriptCount} hook{scriptCount === 1 ? '' : 's'}</Badge>
                         ) : (
-                          <span className="text-xs text-neutral-600">none</span>
+                          <span className="text-xs text-zinc-600">none</span>
                         )}
                       </TD>
-                      <TD>{v.grade ? <GradeBadge grade={v.grade} /> : <span className="text-neutral-600">—</span>}</TD>
+                      <TD>{v.grade ? <GradeBadge grade={v.grade} /> : <span className="text-zinc-600">—</span>}</TD>
                     </TR>
                   )
                 })}
@@ -317,7 +317,7 @@ export default function PackageProfilePage() {
       {/* Maintainers */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-200">Maintainers</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Maintainers</h2>
         </CardHeader>
         <CardBody className="p-0">
           {maintainers.length === 0 ? (
@@ -343,13 +343,13 @@ export default function PackageProfilePage() {
                     <TD>
                       <Link
                         href={`/dashboard/maintainers?focus=${m.id}`}
-                        className="font-medium text-neutral-100 hover:text-lime-300"
+                        className="font-medium text-zinc-100 hover:text-pink-300"
                       >
                         {m.display_name || m.username}
                       </Link>
-                      {m.display_name && <span className="ml-2 text-xs text-neutral-600">@{m.username}</span>}
+                      {m.display_name && <span className="ml-2 text-xs text-zinc-600">@{m.username}</span>}
                     </TD>
-                    <TD className="text-xs text-neutral-400">{m.role || 'publisher'}</TD>
+                    <TD className="text-xs text-zinc-400">{m.role || 'publisher'}</TD>
                     <TD>
                       <Badge tone="neutral">{m.reputation}</Badge>
                     </TD>
@@ -361,10 +361,10 @@ export default function PackageProfilePage() {
                       {m.prior_incidents > 0 ? (
                         <span className="text-red-400">{m.prior_incidents}</span>
                       ) : (
-                        <span className="text-neutral-500">0</span>
+                        <span className="text-zinc-500">0</span>
                       )}
                     </TD>
-                    <TD className="text-xs text-neutral-500">
+                    <TD className="text-xs text-zinc-500">
                       {m.account_created_at ? new Date(m.account_created_at).toLocaleDateString() : '—'}
                     </TD>
                   </TR>
@@ -384,15 +384,15 @@ function CadenceChart({ data }: { data: (readonly [string, number])[] }) {
     <div className="flex items-end gap-1.5 overflow-x-auto pb-2" style={{ minHeight: 140 }}>
       {data.map(([month, n]) => (
         <div key={month} className="flex min-w-[28px] flex-col items-center gap-1">
-          <span className="text-[10px] font-medium text-neutral-400">{n}</span>
+          <span className="text-[10px] font-medium text-zinc-400">{n}</span>
           <div className="flex h-24 w-full items-end">
             <div
-              className="w-full rounded-t bg-lime-400/80 transition-all hover:bg-lime-300"
+              className="w-full rounded-t bg-pink-400/80 transition-all hover:bg-pink-300"
               style={{ height: `${(n / max) * 100}%` }}
               title={`${month}: ${n} release${n === 1 ? '' : 's'}`}
             />
           </div>
-          <span className="whitespace-nowrap text-[9px] text-neutral-600">{month.slice(2)}</span>
+          <span className="whitespace-nowrap text-[9px] text-zinc-600">{month.slice(2)}</span>
         </div>
       ))}
     </div>
@@ -409,12 +409,12 @@ function HourHistogram({ buckets }: { buckets: number[] }) {
           <div key={h} className="flex flex-1 flex-col items-center gap-1">
             <div className="flex h-16 w-full items-end">
               <div
-                className={`w-full rounded-t ${offHours ? 'bg-amber-400/80' : 'bg-neutral-600'}`}
+                className={`w-full rounded-t ${offHours ? 'bg-amber-400/80' : 'bg-zinc-600'}`}
                 style={{ height: n === 0 ? '2px' : `${(n / max) * 100}%` }}
                 title={`${h}:00 UTC — ${n} release${n === 1 ? '' : 's'}`}
               />
             </div>
-            {h % 3 === 0 && <span className="text-[9px] text-neutral-600">{h}</span>}
+            {h % 3 === 0 && <span className="text-[9px] text-zinc-600">{h}</span>}
           </div>
         )
       })}

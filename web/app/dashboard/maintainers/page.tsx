@@ -78,13 +78,13 @@ function accountAgeYears(s?: string | null): number | null {
 function TrustBar({ score }: { score?: number | null }) {
   const v = Math.max(0, Math.min(100, score ?? 0))
   const color =
-    v >= 80 ? 'bg-emerald-400' : v >= 60 ? 'bg-lime-400' : v >= 40 ? 'bg-amber-400' : 'bg-red-500'
+    v >= 80 ? 'bg-emerald-400' : v >= 60 ? 'bg-pink-400' : v >= 40 ? 'bg-amber-400' : 'bg-red-500'
   return (
     <div className="flex items-center gap-2">
-      <div className="h-2 w-28 overflow-hidden rounded-full bg-neutral-800">
+      <div className="h-2 w-28 overflow-hidden rounded-full bg-zinc-800">
         <div className={`h-full ${color}`} style={{ width: `${v}%` }} />
       </div>
-      <span className="w-9 text-right text-xs tabular-nums text-neutral-400">
+      <span className="w-9 text-right text-xs tabular-nums text-zinc-400">
         {score == null ? '—' : Math.round(v)}
       </span>
     </div>
@@ -201,8 +201,8 @@ export default function MaintainersPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-1">
-        <h1 className="text-xl font-semibold text-neutral-100">Maintainer Registry</h1>
-        <p className="text-sm text-neutral-500">
+        <h1 className="text-xl font-semibold text-zinc-100">Maintainer Registry</h1>
+        <p className="text-sm text-zinc-500">
           Trust scores, account provenance and prior-incident history for the people behind your
           supply chain.
         </p>
@@ -223,7 +223,7 @@ export default function MaintainersPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by username or name..."
-              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-lime-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-pink-500/60 focus:outline-none"
             />
             <Button type="submit" variant="secondary">
               Search
@@ -249,8 +249,8 @@ export default function MaintainersPage() {
                 onClick={() => setTierFilter(t)}
                 className={`rounded-md px-2.5 py-1 text-xs font-medium capitalize transition-colors ${
                   tierFilter === t
-                    ? 'bg-lime-400/15 text-lime-300 ring-1 ring-lime-500/30'
-                    : 'text-neutral-400 hover:bg-neutral-800 hover:text-neutral-200'
+                    ? 'bg-pink-400/15 text-pink-300 ring-1 ring-pink-500/30'
+                    : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
                 }`}
               >
                 {t === 'risk' ? 'High risk' : t}
@@ -303,8 +303,8 @@ export default function MaintainersPage() {
                   return (
                     <TR key={m.id} className="cursor-pointer" onClick={() => openProfile(m.id)}>
                       <TD>
-                        <div className="font-medium text-neutral-100">{m.display_name || m.username}</div>
-                        <div className="text-xs text-neutral-500">@{m.username}</div>
+                        <div className="font-medium text-zinc-100">{m.display_name || m.username}</div>
+                        <div className="text-xs text-zinc-500">@{m.username}</div>
                       </TD>
                       <TD>
                         <TrustBar score={m.trust_score} />
@@ -317,14 +317,14 @@ export default function MaintainersPage() {
                         {m.prior_incidents ? (
                           <span className="text-red-300">{m.prior_incidents}</span>
                         ) : (
-                          <span className="text-neutral-500">0</span>
+                          <span className="text-zinc-500">0</span>
                         )}
                       </TD>
-                      <TD className="text-xs text-neutral-400">
+                      <TD className="text-xs text-zinc-400">
                         {age == null ? '—' : age < 1 ? `${Math.round(age * 12)}mo` : `${age.toFixed(1)}y`}
                       </TD>
                       <TD className="text-right">
-                        <span className="text-xs text-lime-400">View →</span>
+                        <span className="text-xs text-pink-400">View →</span>
                       </TD>
                     </TR>
                   )
@@ -360,11 +360,11 @@ export default function MaintainersPage() {
         ) : profile ? (
           <div className="space-y-5">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-sm text-neutral-400">@{profile.username}</span>
+              <span className="text-sm text-zinc-400">@{profile.username}</span>
               <Badge tone={trustTone(profile.trust_score)}>{profile.reputation || trustLabel(profile.trust_score)}</Badge>
             </div>
             <div>
-              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-neutral-500">Trust score</div>
+              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-500">Trust score</div>
               <TrustBar score={profile.trust_score} />
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -382,26 +382,26 @@ export default function MaintainersPage() {
             </div>
 
             <div>
-              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Owned packages ({ownedPackages.length})
               </div>
               {ownedPackages.length === 0 ? (
-                <div className="rounded-lg border border-dashed border-neutral-800 bg-neutral-950/40 px-4 py-6 text-center text-sm text-neutral-500">
+                <div className="rounded-lg border border-dashed border-zinc-800 bg-zinc-950/40 px-4 py-6 text-center text-sm text-zinc-500">
                   No package ownership records.
                 </div>
               ) : (
-                <div className="max-h-64 overflow-y-auto rounded-lg border border-neutral-800">
-                  <ul className="divide-y divide-neutral-800">
+                <div className="max-h-64 overflow-y-auto rounded-lg border border-zinc-800">
+                  <ul className="divide-y divide-zinc-800">
                     {ownedPackages.map((p) => (
                       <li key={p.id} className="flex items-center justify-between gap-3 px-4 py-2.5">
                         <div>
-                          <div className="text-sm font-medium text-neutral-100">{p.name}</div>
-                          <div className="text-xs text-neutral-500">
+                          <div className="text-sm font-medium text-zinc-100">{p.name}</div>
+                          <div className="text-xs text-zinc-500">
                             {p.ecosystem || '—'}
                             {p.reputation_tier ? ` · ${p.reputation_tier}` : ''}
                           </div>
                         </div>
-                        <div className="text-right text-xs text-neutral-400">
+                        <div className="text-right text-xs text-zinc-400">
                           <div>{fmtNum(p.weekly_downloads)} dl/wk</div>
                           <div>★ {fmtNum(p.star_count)}</div>
                         </div>
@@ -435,8 +435,8 @@ function SortableTH({
     <TH className={className}>
       <button
         onClick={onClick}
-        className={`inline-flex items-center gap-1 transition-colors hover:text-neutral-200 ${
-          active ? 'text-lime-300' : ''
+        className={`inline-flex items-center gap-1 transition-colors hover:text-zinc-200 ${
+          active ? 'text-pink-300' : ''
         }`}
       >
         {label}

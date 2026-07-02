@@ -234,8 +234,8 @@ export default function RulesPage() {
     <div className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6">
       <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">Risk Rules</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">Risk Rules</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Tune factor weights and grade-band thresholds. Saving re-scores every update in the workspace.
           </p>
         </div>
@@ -258,7 +258,7 @@ export default function RulesPage() {
         </div>
       )}
       {notice && (
-        <div className="rounded-lg border border-lime-500/30 bg-lime-400/10 px-4 py-3 text-sm text-lime-300">
+        <div className="rounded-lg border border-pink-500/30 bg-pink-400/10 px-4 py-3 text-sm text-pink-300">
           {notice}
         </div>
       )}
@@ -283,13 +283,13 @@ export default function RulesPage() {
         <Card>
           <CardHeader>
             <div className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-neutral-100">Factor Weights</h2>
+              <h2 className="text-sm font-semibold text-zinc-100">Factor Weights</h2>
               <Badge tone="neutral">{weightKeys.length} factors</Badge>
             </div>
           </CardHeader>
           <CardBody className="space-y-5">
             {weightKeys.length === 0 && (
-              <p className="text-sm text-neutral-500">No risk factors are configured for this workspace.</p>
+              <p className="text-sm text-zinc-500">No risk factors are configured for this workspace.</p>
             )}
             {weightKeys.map((key) => {
               const value = Number(weights[key] ?? 0)
@@ -297,7 +297,7 @@ export default function RulesPage() {
               return (
                 <div key={key} className="space-y-1.5">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="font-medium text-neutral-200">{prettyKey(key)}</span>
+                    <span className="font-medium text-zinc-200">{prettyKey(key)}</span>
                     <div className="flex items-center gap-2">
                       <input
                         type="number"
@@ -306,9 +306,9 @@ export default function RulesPage() {
                         max="10"
                         value={value}
                         onChange={(e) => setWeight(key, Number(e.target.value))}
-                        className="w-20 rounded-md border border-neutral-700 bg-neutral-950 px-2 py-1 text-right text-sm text-neutral-100 focus:border-lime-500 focus:outline-none"
+                        className="w-20 rounded-md border border-zinc-700 bg-zinc-950 px-2 py-1 text-right text-sm text-zinc-100 focus:border-pink-500 focus:outline-none"
                       />
-                      <span className="w-12 text-right text-xs text-neutral-500">{share.toFixed(0)}%</span>
+                      <span className="w-12 text-right text-xs text-zinc-500">{share.toFixed(0)}%</span>
                     </div>
                   </div>
                   <input
@@ -318,10 +318,10 @@ export default function RulesPage() {
                     step="0.05"
                     value={value}
                     onChange={(e) => setWeight(key, Number(e.target.value))}
-                    className="w-full accent-lime-400"
+                    className="w-full accent-pink-400"
                   />
-                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-neutral-800">
-                    <div className="h-full rounded-full bg-lime-400/70" style={{ width: `${Math.min(100, share)}%` }} />
+                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
+                    <div className="h-full rounded-full bg-pink-400/70" style={{ width: `${Math.min(100, share)}%` }} />
                   </div>
                 </div>
               )
@@ -333,28 +333,28 @@ export default function RulesPage() {
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-neutral-100">Grade Bands</h2>
+              <h2 className="text-sm font-semibold text-zinc-100">Grade Bands</h2>
             </CardHeader>
             <CardBody className="space-y-4">
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-zinc-500">
                 Minimum total score required to earn each grade. Higher score means higher risk; a score at or above a
                 band&apos;s threshold lands in that grade.
               </p>
               {orderedBands.length === 0 && (
-                <p className="text-sm text-neutral-500">No grade bands configured.</p>
+                <p className="text-sm text-zinc-500">No grade bands configured.</p>
               )}
               {orderedBands.map((g) => (
                 <div key={g} className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
                     <GradeBadge grade={g} />
-                    <span className="text-sm text-neutral-300">threshold</span>
+                    <span className="text-sm text-zinc-300">threshold</span>
                   </div>
                   <input
                     type="number"
                     step="1"
                     value={Number(bands[g] ?? 0)}
                     onChange={(e) => setBand(g, Number(e.target.value))}
-                    className="w-24 rounded-md border border-neutral-700 bg-neutral-950 px-2 py-1 text-right text-sm text-neutral-100 focus:border-lime-500 focus:outline-none"
+                    className="w-24 rounded-md border border-zinc-700 bg-zinc-950 px-2 py-1 text-right text-sm text-zinc-100 focus:border-pink-500 focus:outline-none"
                   />
                 </div>
               ))}
@@ -363,10 +363,10 @@ export default function RulesPage() {
 
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-neutral-100">Auto-clear Ceiling</h2>
+              <h2 className="text-sm font-semibold text-zinc-100">Auto-clear Ceiling</h2>
             </CardHeader>
             <CardBody className="space-y-3">
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-zinc-500">
                 Updates graded at or below this ceiling are auto-approved during triage. Leave off to require manual
                 review for everything.
               </p>
@@ -376,8 +376,8 @@ export default function RulesPage() {
                   onClick={() => setAutoClear('')}
                   className={`rounded-lg border px-3 py-1.5 text-sm transition-colors ${
                     autoClear === ''
-                      ? 'border-lime-500/40 bg-lime-400/10 text-lime-300'
-                      : 'border-neutral-700 text-neutral-400 hover:bg-neutral-800'
+                      ? 'border-pink-500/40 bg-pink-400/10 text-pink-300'
+                      : 'border-zinc-700 text-zinc-400 hover:bg-zinc-800'
                   }`}
                 >
                   Off
@@ -389,8 +389,8 @@ export default function RulesPage() {
                     onClick={() => setAutoClear(g)}
                     className={`rounded-lg border px-3 py-1.5 text-sm font-semibold transition-colors ${
                       autoClear === g
-                        ? 'border-lime-500/40 bg-lime-400/10 text-lime-300'
-                        : 'border-neutral-700 text-neutral-400 hover:bg-neutral-800'
+                        ? 'border-pink-500/40 bg-pink-400/10 text-pink-300'
+                        : 'border-zinc-700 text-zinc-400 hover:bg-zinc-800'
                     }`}
                   >
                     {g} or safer
@@ -406,8 +406,8 @@ export default function RulesPage() {
       <Card>
         <CardHeader>
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-sm font-semibold text-neutral-100">Live Re-score Preview</h2>
-            <span className="text-xs text-neutral-500">
+            <h2 className="text-sm font-semibold text-zinc-100">Live Re-score Preview</h2>
+            <span className="text-xs text-zinc-500">
               {previewTotal > 0
                 ? `${previewTotal} update${previewTotal === 1 ? '' : 's'} re-scored on last save`
                 : 'Save to compute a fresh preview'}
@@ -432,19 +432,19 @@ export default function RulesPage() {
                       <div className="w-8">
                         <GradeBadge grade={g} />
                       </div>
-                      <div className="h-3 flex-1 overflow-hidden rounded-full bg-neutral-800">
+                      <div className="h-3 flex-1 overflow-hidden rounded-full bg-zinc-800">
                         <div
                           className={`h-full rounded-full ${
                             g === 'F'
                               ? 'bg-red-500/70'
                               : g === 'C' || g === 'D'
                                 ? 'bg-amber-400/70'
-                                : 'bg-lime-400/70'
+                                : 'bg-pink-400/70'
                           }`}
                           style={{ width: `${pct}%` }}
                         />
                       </div>
-                      <span className="w-16 text-right text-xs text-neutral-400">
+                      <span className="w-16 text-right text-xs text-zinc-400">
                         {count} ({pct.toFixed(0)}%)
                       </span>
                     </div>
@@ -453,9 +453,9 @@ export default function RulesPage() {
               </div>
 
               {/* Per-update preview table */}
-              <div className="w-full overflow-x-auto rounded-xl border border-neutral-800">
+              <div className="w-full overflow-x-auto rounded-xl border border-zinc-800">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-neutral-900/80 text-xs uppercase tracking-wide text-neutral-500">
+                  <thead className="bg-zinc-900/80 text-xs uppercase tracking-wide text-zinc-500">
                     <tr>
                       <th className="px-4 py-3 font-medium">Package</th>
                       <th className="px-4 py-3 font-medium">Bump</th>
@@ -463,23 +463,23 @@ export default function RulesPage() {
                       <th className="px-4 py-3 font-medium text-center">Grade</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-neutral-800">
+                  <tbody className="divide-y divide-zinc-800">
                     {preview.slice(0, 50).map((r, i) => {
                       const newGrade = r.new_grade ?? r.grade
                       const oldGrade = r.old_grade
                       const changed = oldGrade != null && oldGrade.toUpperCase() !== (newGrade ?? '').toUpperCase()
                       const score = r.total_score ?? r.score
                       return (
-                        <tr key={r.update_id ?? i} className="hover:bg-neutral-900/60">
-                          <td className="px-4 py-3 font-medium text-neutral-200">
+                        <tr key={r.update_id ?? i} className="hover:bg-zinc-900/60">
+                          <td className="px-4 py-3 font-medium text-zinc-200">
                             {r.package ?? r.package_name ?? r.update_id ?? '—'}
                           </td>
-                          <td className="px-4 py-3 text-neutral-400">
+                          <td className="px-4 py-3 text-zinc-400">
                             {r.from_version || r.to_version
                               ? `${r.from_version ?? '?'} → ${r.to_version ?? '?'}`
                               : '—'}
                           </td>
-                          <td className="px-4 py-3 text-right tabular-nums text-neutral-300">
+                          <td className="px-4 py-3 text-right tabular-nums text-zinc-300">
                             {typeof score === 'number' ? score.toFixed(1) : '—'}
                           </td>
                           <td className="px-4 py-3 text-center">
@@ -489,7 +489,7 @@ export default function RulesPage() {
                                   <Badge tone={gradeTone(oldGrade)} className="opacity-50">
                                     {oldGrade}
                                   </Badge>
-                                  <span className="text-neutral-600">→</span>
+                                  <span className="text-zinc-600">→</span>
                                 </>
                               )}
                               <GradeBadge grade={newGrade} />
@@ -502,7 +502,7 @@ export default function RulesPage() {
                 </table>
               </div>
               {preview.length > 50 && (
-                <p className="text-center text-xs text-neutral-600">
+                <p className="text-center text-xs text-zinc-600">
                   Showing first 50 of {preview.length} re-scored updates.
                 </p>
               )}

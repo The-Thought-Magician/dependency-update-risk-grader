@@ -234,8 +234,8 @@ export default function SettingsPage() {
       <div className="mx-auto max-w-md">
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-neutral-100">Create your workspace</h2>
-            <p className="mt-0.5 text-xs text-neutral-500">
+            <h2 className="text-sm font-semibold text-zinc-100">Create your workspace</h2>
+            <p className="mt-0.5 text-xs text-zinc-500">
               You need a workspace before you can track projects and grade updates.
             </p>
           </CardHeader>
@@ -246,14 +246,14 @@ export default function SettingsPage() {
               </div>
             )}
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Workspace name
               </label>
               <input
                 value={newWsName}
                 onChange={(e) => setNewWsName(e.target.value)}
                 placeholder="e.g. Acme Engineering"
-                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
               />
             </div>
             <Button onClick={() => void createWorkspace()} disabled={creatingWs}>
@@ -273,8 +273,8 @@ export default function SettingsPage() {
     <div className="mx-auto max-w-4xl space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">Settings</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">Settings</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Workspace configuration, team members, and billing.
           </p>
         </div>
@@ -282,7 +282,7 @@ export default function SettingsPage() {
           <select
             value={workspace.id}
             onChange={(e) => void switchWorkspace(e.target.value)}
-            className="rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-1.5 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
           >
             {workspaces.map((w) => (
               <option key={w.id} value={w.id}>
@@ -299,7 +299,7 @@ export default function SettingsPage() {
         </div>
       )}
       {savedMsg && (
-        <div className="rounded-lg border border-lime-500/30 bg-lime-400/10 px-4 py-3 text-sm text-lime-300">
+        <div className="rounded-lg border border-pink-500/30 bg-pink-400/10 px-4 py-3 text-sm text-pink-300">
           {savedMsg}
         </div>
       )}
@@ -307,29 +307,29 @@ export default function SettingsPage() {
       {/* Workspace */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-100">Workspace</h2>
-          <p className="mt-0.5 text-xs text-neutral-500">
+          <h2 className="text-sm font-semibold text-zinc-100">Workspace</h2>
+          <p className="mt-0.5 text-xs text-zinc-500">
             Only the workspace owner can change these settings.
           </p>
         </CardHeader>
         <CardBody className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full max-w-md rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+              className="w-full max-w-md rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Default ecosystem
               </label>
               <select
                 value={ecosystem}
                 onChange={(e) => setEcosystem(e.target.value)}
-                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
               >
                 {ECOSYSTEMS.map((e) => (
                   <option key={e} value={e}>
@@ -339,7 +339,7 @@ export default function SettingsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Auto-clear updates at or below grade
               </label>
               <div className="flex gap-2">
@@ -350,8 +350,8 @@ export default function SettingsPage() {
                     onClick={() => setAutoClear(g)}
                     className={`flex-1 rounded-lg border px-3 py-2 text-sm font-semibold transition-colors ${
                       autoClear === g
-                        ? 'border-lime-500/40 bg-lime-400/15 text-lime-300'
-                        : 'border-neutral-700 bg-neutral-950 text-neutral-400 hover:bg-neutral-800'
+                        ? 'border-pink-500/40 bg-pink-400/15 text-pink-300'
+                        : 'border-zinc-700 bg-zinc-950 text-zinc-400 hover:bg-zinc-800'
                     }`}
                   >
                     {g}
@@ -360,9 +360,9 @@ export default function SettingsPage() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between border-t border-neutral-800 pt-4">
-            <div className="text-xs text-neutral-600">
-              Slug <code className="rounded bg-neutral-950 px-1.5 py-0.5 text-neutral-400">{workspace.slug ?? '–'}</code>
+          <div className="flex items-center justify-between border-t border-zinc-800 pt-4">
+            <div className="text-xs text-zinc-600">
+              Slug <code className="rounded bg-zinc-950 px-1.5 py-0.5 text-zinc-400">{workspace.slug ?? '–'}</code>
               <span className="ml-3">Created {fmtDate(workspace.created_at)}</span>
             </div>
             <Button onClick={() => void saveWorkspace()} disabled={saving}>
@@ -376,8 +376,8 @@ export default function SettingsPage() {
       <Card>
         <CardHeader className="flex items-center justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-neutral-100">Plan & billing</h2>
-            <p className="mt-0.5 text-xs text-neutral-500">Subscription tier for your account.</p>
+            <h2 className="text-sm font-semibold text-zinc-100">Plan & billing</h2>
+            <p className="mt-0.5 text-xs text-zinc-500">Subscription tier for your account.</p>
           </div>
           <Badge tone={isPro ? 'lime' : 'neutral'}>{planName}</Badge>
         </CardHeader>
@@ -390,8 +390,8 @@ export default function SettingsPage() {
               value={fmtDate(billing?.subscription?.current_period_end)}
             />
           </div>
-          <div className="flex items-center justify-between border-t border-neutral-800 pt-4">
-            <p className="text-xs text-neutral-500">
+          <div className="flex items-center justify-between border-t border-zinc-800 pt-4">
+            <p className="text-xs text-zinc-500">
               {billing?.stripeEnabled
                 ? isPro
                   ? 'Manage your subscription, payment method and invoices in the billing portal.'
@@ -412,12 +412,12 @@ export default function SettingsPage() {
       {/* Members */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-100">Members ({members.length})</h2>
-          <p className="mt-0.5 text-xs text-neutral-500">People with access to this workspace.</p>
+          <h2 className="text-sm font-semibold text-zinc-100">Members ({members.length})</h2>
+          <p className="mt-0.5 text-xs text-zinc-500">People with access to this workspace.</p>
         </CardHeader>
         <CardBody className="p-0">
           {members.length === 0 ? (
-            <div className="px-5 py-6 text-center text-sm text-neutral-500">
+            <div className="px-5 py-6 text-center text-sm text-zinc-500">
               No members listed. You may not have permission to view the member list for this workspace.
             </div>
           ) : (
@@ -432,11 +432,11 @@ export default function SettingsPage() {
               <TBody>
                 {members.map((m) => (
                   <TR key={m.id}>
-                    <TD className="font-mono text-xs text-neutral-300">{m.user_id}</TD>
+                    <TD className="font-mono text-xs text-zinc-300">{m.user_id}</TD>
                     <TD>
                       <Badge tone={ROLE_TONE[m.role] ?? 'neutral'}>{m.role}</Badge>
                     </TD>
-                    <TD className="text-right text-xs text-neutral-500">{fmtDate(m.created_at)}</TD>
+                    <TD className="text-right text-xs text-zinc-500">{fmtDate(m.created_at)}</TD>
                   </TR>
                 ))}
               </TBody>

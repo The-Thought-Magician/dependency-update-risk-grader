@@ -299,8 +299,8 @@ export default function WebhooksPage() {
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">Webhooks</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">Webhooks</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Forward grading and decision events to your own systems and inspect delivery logs.
           </p>
         </div>
@@ -309,7 +309,7 @@ export default function WebhooksPage() {
             <select
               value={workspaceId}
               onChange={(e) => void switchWorkspace(e.target.value)}
-              className="rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-1.5 text-sm text-neutral-200 focus:border-lime-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200 focus:border-pink-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -347,23 +347,23 @@ export default function WebhooksPage() {
             <Card key={wh.id} className="flex flex-col gap-4 px-5 py-4 lg:flex-row lg:items-center lg:justify-between">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-medium text-neutral-100">{wh.name}</span>
+                  <span className="font-medium text-zinc-100">{wh.name}</span>
                   <button
                     onClick={() => void toggleEnabled(wh)}
                     className={`inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-xs font-medium ${
                       wh.enabled
-                        ? 'border-lime-500/30 bg-lime-400/15 text-lime-300'
-                        : 'border-neutral-700 bg-neutral-800 text-neutral-400'
+                        ? 'border-pink-500/30 bg-pink-400/15 text-pink-300'
+                        : 'border-zinc-700 bg-zinc-800 text-zinc-400'
                     }`}
                   >
-                    <span className={`h-1.5 w-1.5 rounded-full ${wh.enabled ? 'bg-lime-400' : 'bg-neutral-500'}`} />
+                    <span className={`h-1.5 w-1.5 rounded-full ${wh.enabled ? 'bg-pink-400' : 'bg-zinc-500'}`} />
                     {wh.enabled ? 'Enabled' : 'Disabled'}
                   </button>
                 </div>
-                <code className="mt-1 block truncate text-xs text-neutral-500">{wh.url}</code>
+                <code className="mt-1 block truncate text-xs text-zinc-500">{wh.url}</code>
                 <div className="mt-2 flex flex-wrap gap-1">
                   {(wh.event_types ?? []).length === 0 ? (
-                    <span className="text-xs text-neutral-600">all events</span>
+                    <span className="text-xs text-zinc-600">all events</span>
                   ) : (
                     wh.event_types.map((ev) => (
                       <Badge key={ev} tone="neutral">
@@ -416,39 +416,39 @@ export default function WebhooksPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="e.g. Slack security channel"
-              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-lime-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-pink-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Endpoint URL
             </label>
             <input
               value={form.url}
               onChange={(e) => setForm((f) => ({ ...f, url: e.target.value }))}
               placeholder="https://hooks.example.com/durg"
-              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-lime-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-pink-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
-              Signing secret <span className="font-normal normal-case text-neutral-600">(optional)</span>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+              Signing secret <span className="font-normal normal-case text-zinc-600">(optional)</span>
             </label>
             <input
               value={form.secret}
               onChange={(e) => setForm((f) => ({ ...f, secret: e.target.value }))}
               placeholder="Sent as X-Webhook-Secret"
-              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-lime-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-pink-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
-              Events <span className="font-normal normal-case text-neutral-600">(none = all)</span>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+              Events <span className="font-normal normal-case text-zinc-600">(none = all)</span>
             </label>
             <div className="flex flex-wrap gap-2">
               {EVENT_TYPES.map((ev) => {
@@ -460,8 +460,8 @@ export default function WebhooksPage() {
                     onClick={() => toggleEvent(ev)}
                     className={`rounded-lg border px-2.5 py-1 text-xs font-medium transition-colors ${
                       on
-                        ? 'border-lime-500/40 bg-lime-400/15 text-lime-300'
-                        : 'border-neutral-700 bg-neutral-950 text-neutral-400 hover:bg-neutral-800'
+                        ? 'border-pink-500/40 bg-pink-400/15 text-pink-300'
+                        : 'border-zinc-700 bg-zinc-950 text-zinc-400 hover:bg-zinc-800'
                     }`}
                   >
                     {ev}
@@ -470,12 +470,12 @@ export default function WebhooksPage() {
               })}
             </div>
           </div>
-          <label className="flex items-center gap-2 text-sm text-neutral-300">
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={form.enabled}
               onChange={(e) => setForm((f) => ({ ...f, enabled: e.target.checked }))}
-              className="h-4 w-4 rounded border-neutral-700 bg-neutral-900 accent-lime-400"
+              className="h-4 w-4 rounded border-zinc-700 bg-zinc-900 accent-pink-400"
             />
             Enabled
           </label>
@@ -506,7 +506,7 @@ export default function WebhooksPage() {
             <Spinner />
           </div>
         ) : deliveries.length === 0 ? (
-          <p className="py-4 text-center text-sm text-neutral-500">
+          <p className="py-4 text-center text-sm text-zinc-500">
             No deliveries recorded yet. Send a test delivery to verify the endpoint.
           </p>
         ) : (
@@ -522,12 +522,12 @@ export default function WebhooksPage() {
             <TBody>
               {deliveries.map((d) => (
                 <TR key={d.id}>
-                  <TD className="text-xs text-neutral-300">{d.event_type}</TD>
+                  <TD className="text-xs text-zinc-300">{d.event_type}</TD>
                   <TD>
                     <Badge tone={deliveryTone(d.status)}>{d.status}</Badge>
                   </TD>
-                  <TD className="text-right text-xs tabular-nums text-neutral-400">{d.status_code ?? '–'}</TD>
-                  <TD className="text-right text-xs text-neutral-500">{fmtDate(d.created_at)}</TD>
+                  <TD className="text-right text-xs tabular-nums text-zinc-400">{d.status_code ?? '–'}</TD>
+                  <TD className="text-right text-xs text-zinc-500">{fmtDate(d.created_at)}</TD>
                 </TR>
               ))}
             </TBody>

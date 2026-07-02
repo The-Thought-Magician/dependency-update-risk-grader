@@ -318,7 +318,7 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
   if (error || !policy) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/policies" className="text-sm text-neutral-400 hover:text-lime-300">
+        <Link href="/dashboard/policies" className="text-sm text-zinc-400 hover:text-pink-300">
           ← Back to policies
         </Link>
         <EmptyState
@@ -337,11 +337,11 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-2">
-        <Link href="/dashboard/policies" className="text-sm text-neutral-400 hover:text-lime-300">
+        <Link href="/dashboard/policies" className="text-sm text-zinc-400 hover:text-pink-300">
           ← Back to policies
         </Link>
         <div className="flex flex-wrap items-center gap-3">
-          <h1 className="text-xl font-semibold text-neutral-100">{policy.name}</h1>
+          <h1 className="text-xl font-semibold text-zinc-100">{policy.name}</h1>
           {policy.is_default && <Badge tone="lime">Default</Badge>}
           <Badge tone="neutral">Updated {fmtDate(policy.updated_at)}</Badge>
         </div>
@@ -352,12 +352,12 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
         <div className="space-y-6 lg:col-span-2">
           <Card>
             <CardHeader className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-neutral-200">Profile</h2>
+              <h2 className="text-sm font-semibold text-zinc-200">Profile</h2>
               <div className="flex items-center gap-3">
                 {policySaveMsg && (
                   <span
                     className={`text-xs ${
-                      policySaveMsg === 'Saved' ? 'text-lime-300' : 'text-red-300'
+                      policySaveMsg === 'Saved' ? 'text-pink-300' : 'text-red-300'
                     }`}
                   >
                     {policySaveMsg}
@@ -370,28 +370,28 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
             </CardHeader>
             <CardBody className="space-y-4">
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                   Name
                 </label>
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-lime-500/60 focus:outline-none"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-pink-500/60 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                   Description
                 </label>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={2}
-                  className="w-full resize-none rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-lime-500/60 focus:outline-none"
+                  className="w-full resize-none rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-pink-500/60 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                   Auto-clear updates at or below grade
                 </label>
                 <div className="flex gap-2">
@@ -402,8 +402,8 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
                       onClick={() => setAutoClear(g)}
                       className={`flex-1 rounded-lg border px-3 py-2 text-sm font-semibold transition-colors ${
                         autoClear === g
-                          ? 'border-lime-500/40 bg-lime-400/15 text-lime-300'
-                          : 'border-neutral-700 bg-neutral-950 text-neutral-400 hover:bg-neutral-800'
+                          ? 'border-pink-500/40 bg-pink-400/15 text-pink-300'
+                          : 'border-zinc-700 bg-zinc-950 text-zinc-400 hover:bg-zinc-800'
                       }`}
                     >
                       {g}
@@ -416,11 +416,11 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
 
           <Card>
             <CardHeader className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-neutral-200">Risk factor weights</h2>
+              <h2 className="text-sm font-semibold text-zinc-200">Risk factor weights</h2>
               <Badge tone={weightTotal === 0 ? 'red' : 'neutral'}>Total {weightTotal}</Badge>
             </CardHeader>
             <CardBody className="space-y-4">
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-zinc-500">
                 Each factor contributes to the composite risk score in proportion to its weight.
                 Set a weight to 0 to ignore a signal.
               </p>
@@ -430,8 +430,8 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
                 return (
                   <div key={k}>
                     <div className="mb-1 flex items-center justify-between text-sm">
-                      <span className="text-neutral-300">{prettyKey(k)}</span>
-                      <span className="flex items-center gap-2 text-xs text-neutral-500">
+                      <span className="text-zinc-300">{prettyKey(k)}</span>
+                      <span className="flex items-center gap-2 text-xs text-zinc-500">
                         <span className="tabular-nums">{pct}%</span>
                         <input
                           type="number"
@@ -439,7 +439,7 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
                           max={100}
                           value={v}
                           onChange={(e) => setWeight(k, Number(e.target.value))}
-                          className="w-16 rounded-md border border-neutral-700 bg-neutral-950 px-2 py-1 text-right text-xs text-neutral-100 focus:border-lime-500/60 focus:outline-none"
+                          className="w-16 rounded-md border border-zinc-700 bg-zinc-950 px-2 py-1 text-right text-xs text-zinc-100 focus:border-pink-500/60 focus:outline-none"
                         />
                       </span>
                     </div>
@@ -449,7 +449,7 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
                       max={100}
                       value={v}
                       onChange={(e) => setWeight(k, Number(e.target.value))}
-                      className="w-full accent-lime-400"
+                      className="w-full accent-pink-400"
                     />
                   </div>
                 )
@@ -459,16 +459,16 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
 
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-neutral-200">Grade bands</h2>
+              <h2 className="text-sm font-semibold text-zinc-200">Grade bands</h2>
             </CardHeader>
             <CardBody>
-              <p className="mb-3 text-xs text-neutral-500">
+              <p className="mb-3 text-xs text-zinc-500">
                 Minimum composite score required to earn each grade (0–100). Higher score means
                 higher risk.
               </p>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
                 {GRADE_BAND_KEYS.map((g) => (
-                  <div key={g} className="rounded-lg border border-neutral-800 bg-neutral-950/50 p-3">
+                  <div key={g} className="rounded-lg border border-zinc-800 bg-zinc-950/50 p-3">
                     <div className="mb-1 flex items-center gap-2">
                       <Badge tone={gradeTone(g)}>{g}</Badge>
                     </div>
@@ -479,7 +479,7 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
                       value={bands[g] ?? ''}
                       onChange={(e) => setBand(g, Number(e.target.value))}
                       placeholder="0"
-                      className="w-full rounded-md border border-neutral-700 bg-neutral-950 px-2 py-1 text-sm text-neutral-100 focus:border-lime-500/60 focus:outline-none"
+                      className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-2 py-1 text-sm text-zinc-100 focus:border-pink-500/60 focus:outline-none"
                     />
                   </div>
                 ))}
@@ -492,7 +492,7 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
         <div className="space-y-6">
           <Card>
             <CardHeader className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-neutral-200">Gate rules ({rules.length})</h2>
+              <h2 className="text-sm font-semibold text-zinc-200">Gate rules ({rules.length})</h2>
               <Button variant="secondary" onClick={openCreateRule}>
                 + Rule
               </Button>
@@ -514,19 +514,19 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
                     key={r.id}
                     className={`rounded-lg border p-3 transition-colors ${
                       r.enabled
-                        ? 'border-neutral-800 bg-neutral-950/50'
-                        : 'border-neutral-900 bg-neutral-950/20 opacity-60'
+                        ? 'border-zinc-800 bg-zinc-950/50'
+                        : 'border-zinc-900 bg-zinc-950/20 opacity-60'
                     }`}
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="min-w-0">
-                        <div className="truncate text-sm font-medium text-neutral-100">
+                        <div className="truncate text-sm font-medium text-zinc-100">
                           {prettyKey(r.rule_type)}
                         </div>
                         <div className="mt-1 flex flex-wrap items-center gap-2">
                           <Badge tone={actionTone(r.action)}>{prettyKey(r.action)}</Badge>
                           {r.threshold != null && (
-                            <span className="text-xs text-neutral-500">threshold {r.threshold}</span>
+                            <span className="text-xs text-zinc-500">threshold {r.threshold}</span>
                           )}
                         </div>
                       </div>
@@ -535,15 +535,15 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
                           type="checkbox"
                           checked={r.enabled}
                           onChange={() => toggleRuleEnabled(r)}
-                          className="h-3.5 w-3.5 accent-lime-400"
+                          className="h-3.5 w-3.5 accent-pink-400"
                         />
-                        <span className="text-xs text-neutral-500">On</span>
+                        <span className="text-xs text-zinc-500">On</span>
                       </label>
                     </div>
-                    <div className="mt-2 flex items-center gap-3 border-t border-neutral-800 pt-2">
+                    <div className="mt-2 flex items-center gap-3 border-t border-zinc-800 pt-2">
                       <button
                         onClick={() => openEditRule(r)}
-                        className="text-xs text-neutral-400 hover:text-lime-300"
+                        className="text-xs text-zinc-400 hover:text-pink-300"
                       >
                         Edit
                       </button>
@@ -562,13 +562,13 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
 
           <Card>
             <CardHeader className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-neutral-200">Dry-run simulation</h2>
+              <h2 className="text-sm font-semibold text-zinc-200">Dry-run simulation</h2>
               <Button onClick={runSimulation} disabled={simRunning}>
                 {simRunning ? <Spinner className="h-4 w-4" /> : 'Run'}
               </Button>
             </CardHeader>
             <CardBody className="space-y-3">
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-zinc-500">
                 Apply the current weights, bands and rules to historical updates without committing.
               </p>
               {simError && (
@@ -592,7 +592,7 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
       {sim && simResults.length > 0 && (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-neutral-200">Simulation results</h2>
+            <h2 className="text-sm font-semibold text-zinc-200">Simulation results</h2>
           </CardHeader>
           <CardBody className="p-0">
             <Table>
@@ -609,10 +609,10 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
               <TBody>
                 {simResults.map((r, i) => (
                   <TR key={r.update_id ?? i}>
-                    <TD className="font-medium text-neutral-100">
+                    <TD className="font-medium text-zinc-100">
                       {r.package || r.package_name || '—'}
                     </TD>
-                    <TD className="text-xs text-neutral-400">
+                    <TD className="text-xs text-zinc-400">
                       {r.from_version || '?'} → {r.to_version || '?'}
                     </TD>
                     <TD>
@@ -630,7 +630,7 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
                         <Badge tone="green">Cleared</Badge>
                       )}
                     </TD>
-                    <TD className="max-w-xs truncate text-xs text-neutral-500" title={r.message || ''}>
+                    <TD className="max-w-xs truncate text-xs text-zinc-500" title={r.message || ''}>
                       {r.message || '—'}
                     </TD>
                   </TR>
@@ -675,13 +675,13 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Rule type
             </label>
             <select
               value={ruleType}
               onChange={(e) => setRuleType(e.target.value)}
-              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-lime-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-pink-500/60 focus:outline-none"
             >
               {RULE_TYPES.map((t) => (
                 <option key={t} value={t}>
@@ -692,7 +692,7 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Threshold
               </label>
               <input
@@ -700,17 +700,17 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
                 value={ruleThreshold}
                 onChange={(e) => setRuleThreshold(e.target.value)}
                 placeholder="optional"
-                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-lime-500/60 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-pink-500/60 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Action
               </label>
               <select
                 value={ruleAction}
                 onChange={(e) => setRuleAction(e.target.value)}
-                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-lime-500/60 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-pink-500/60 focus:outline-none"
               >
                 {RULE_ACTIONS.map((a) => (
                   <option key={a} value={a}>
@@ -720,12 +720,12 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
               </select>
             </div>
           </div>
-          <label className="flex items-center gap-2 text-sm text-neutral-300">
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={ruleEnabled}
               onChange={(e) => setRuleEnabled(e.target.checked)}
-              className="h-4 w-4 accent-lime-400"
+              className="h-4 w-4 accent-pink-400"
             />
             Enabled
           </label>
@@ -747,9 +747,9 @@ export default function PolicyDetailPage({ params }: { params: Promise<{ id: str
           </>
         }
       >
-        <p className="text-sm text-neutral-300">
+        <p className="text-sm text-zinc-300">
           Delete the{' '}
-          <span className="font-semibold text-neutral-100">
+          <span className="font-semibold text-zinc-100">
             {deleteRuleTarget ? prettyKey(deleteRuleTarget.rule_type) : ''}
           </span>{' '}
           rule? This cannot be undone.

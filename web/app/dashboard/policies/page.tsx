@@ -174,8 +174,8 @@ export default function PoliciesPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div className="flex flex-col gap-1">
-          <h1 className="text-xl font-semibold text-neutral-100">Policy Profiles</h1>
-          <p className="text-sm text-neutral-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Policy Profiles</h1>
+          <p className="text-sm text-zinc-500">
             Reusable scoring weights, grade bands and gate rules applied to dependency updates.
           </p>
         </div>
@@ -196,7 +196,7 @@ export default function PoliciesPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Filter policies..."
-            className="w-full max-w-sm rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-lime-500/60 focus:outline-none"
+            className="w-full max-w-sm rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-pink-500/60 focus:outline-none"
           />
           {workspaceId && (
             <Button variant="ghost" onClick={() => loadPolicies(workspaceId)}>
@@ -242,38 +242,38 @@ export default function PoliciesPage() {
                 return (
                   <div
                     key={p.id}
-                    className="flex flex-col rounded-xl border border-neutral-800 bg-neutral-950/40 p-4 transition-colors hover:border-neutral-700"
+                    className="flex flex-col rounded-xl border border-zinc-800 bg-zinc-950/40 p-4 transition-colors hover:border-zinc-700"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
                           <Link
                             href={`/dashboard/policies/${p.id}`}
-                            className="truncate font-semibold text-neutral-100 hover:text-lime-300"
+                            className="truncate font-semibold text-zinc-100 hover:text-pink-300"
                           >
                             {p.name}
                           </Link>
                           {p.is_default && <Badge tone="lime">Default</Badge>}
                         </div>
-                        <p className="mt-1 line-clamp-2 text-xs text-neutral-500">
+                        <p className="mt-1 line-clamp-2 text-xs text-zinc-500">
                           {p.description || 'No description.'}
                         </p>
                       </div>
                     </div>
 
                     <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
-                      <span className="text-neutral-500">Auto-clear ≤</span>
+                      <span className="text-zinc-500">Auto-clear ≤</span>
                       <Badge tone={gradeTone(p.auto_clear_max_grade)}>
                         {(p.auto_clear_max_grade || '—').toUpperCase()}
                       </Badge>
                       {weightKeys.length > 0 && (
-                        <span className="text-neutral-500">· {weightKeys.length} weighted factors</span>
+                        <span className="text-zinc-500">· {weightKeys.length} weighted factors</span>
                       )}
                     </div>
 
-                    <div className="mt-3 text-xs text-neutral-600">Updated {fmtDate(p.updated_at)}</div>
+                    <div className="mt-3 text-xs text-zinc-600">Updated {fmtDate(p.updated_at)}</div>
 
-                    <div className="mt-4 flex items-center justify-between gap-2 border-t border-neutral-800 pt-3">
+                    <div className="mt-4 flex items-center justify-between gap-2 border-t border-zinc-800 pt-3">
                       <Link href={`/dashboard/policies/${p.id}`}>
                         <Button variant="secondary">Edit & rules</Button>
                       </Link>
@@ -317,7 +317,7 @@ export default function PoliciesPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Name
             </label>
             <input
@@ -325,11 +325,11 @@ export default function PoliciesPage() {
               onChange={(e) => setName(e.target.value)}
               autoFocus
               placeholder="e.g. Production guardrails"
-              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-lime-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-pink-500/60 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Description
             </label>
             <textarea
@@ -337,11 +337,11 @@ export default function PoliciesPage() {
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
               placeholder="What this policy enforces..."
-              className="w-full resize-none rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-lime-500/60 focus:outline-none"
+              className="w-full resize-none rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-pink-500/60 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Auto-clear updates at or below grade
             </label>
             <div className="flex gap-2">
@@ -352,15 +352,15 @@ export default function PoliciesPage() {
                   onClick={() => setAutoClear(g)}
                   className={`flex-1 rounded-lg border px-3 py-2 text-sm font-semibold transition-colors ${
                     autoClear === g
-                      ? 'border-lime-500/40 bg-lime-400/15 text-lime-300'
-                      : 'border-neutral-700 bg-neutral-950 text-neutral-400 hover:bg-neutral-800'
+                      ? 'border-pink-500/40 bg-pink-400/15 text-pink-300'
+                      : 'border-zinc-700 bg-zinc-950 text-zinc-400 hover:bg-zinc-800'
                   }`}
                 >
                   {g}
                 </button>
               ))}
             </div>
-            <p className="mt-1 text-xs text-neutral-600">
+            <p className="mt-1 text-xs text-zinc-600">
               Lower-risk grades cleared automatically; riskier updates require review.
             </p>
           </div>
@@ -382,8 +382,8 @@ export default function PoliciesPage() {
           </>
         }
       >
-        <p className="text-sm text-neutral-300">
-          Delete <span className="font-semibold text-neutral-100">{deleteTarget?.name}</span>? This
+        <p className="text-sm text-zinc-300">
+          Delete <span className="font-semibold text-zinc-100">{deleteTarget?.name}</span>? This
           removes its rules and cannot be undone. Updates currently graded by this policy keep their
           historical scores.
         </p>

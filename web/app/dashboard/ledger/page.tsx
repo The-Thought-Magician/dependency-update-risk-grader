@@ -227,8 +227,8 @@ export default function LedgerPage() {
     <div className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6">
       <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">Decision Ledger</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">Decision Ledger</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Tamper-evident, hash-chained record of every approve / reject / hold decision.
           </p>
         </div>
@@ -251,7 +251,7 @@ export default function LedgerPage() {
         </div>
       )}
       {notice && (
-        <div className="rounded-lg border border-lime-500/30 bg-lime-400/10 px-4 py-3 text-sm text-lime-300">
+        <div className="rounded-lg border border-pink-500/30 bg-pink-400/10 px-4 py-3 text-sm text-pink-300">
           {notice}
         </div>
       )}
@@ -261,7 +261,7 @@ export default function LedgerPage() {
         <div
           className={`flex items-center gap-3 rounded-lg border px-4 py-3 text-sm ${
             verify.valid
-              ? 'border-lime-500/30 bg-lime-400/10 text-lime-300'
+              ? 'border-pink-500/30 bg-pink-400/10 text-pink-300'
               : 'border-red-500/30 bg-red-500/10 text-red-300'
           }`}
         >
@@ -292,34 +292,34 @@ export default function LedgerPage() {
             placeholder="Search package, actor, justification…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="min-w-56 flex-1 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-lime-500 focus:outline-none"
+            className="min-w-56 flex-1 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-pink-500 focus:outline-none"
           />
           <div className="flex flex-col gap-1">
-            <label className="text-[10px] font-medium uppercase tracking-wide text-neutral-500">Package</label>
+            <label className="text-[10px] font-medium uppercase tracking-wide text-zinc-500">Package</label>
             <input
               type="text"
               placeholder="package name"
               value={packageFilter}
               onChange={(e) => setPackageFilter(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && applyServerFilters()}
-              className="w-40 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-lime-500 focus:outline-none"
+              className="w-40 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-pink-500 focus:outline-none"
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-[10px] font-medium uppercase tracking-wide text-neutral-500">Actor</label>
+            <label className="text-[10px] font-medium uppercase tracking-wide text-zinc-500">Actor</label>
             <input
               type="text"
               placeholder="actor id"
               value={actorFilter}
               onChange={(e) => setActorFilter(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && applyServerFilters()}
-              className="w-40 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-lime-500 focus:outline-none"
+              className="w-40 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-pink-500 focus:outline-none"
             />
           </div>
           <select
             value={decisionFilter}
             onChange={(e) => setDecisionFilter(e.target.value)}
-            className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-lime-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:border-pink-500 focus:outline-none"
           >
             <option value="all">All decisions</option>
             {decisionTypes.map((d) => (
@@ -345,9 +345,9 @@ export default function LedgerPage() {
           }
         />
       ) : (
-        <div className="w-full overflow-x-auto rounded-xl border border-neutral-800">
+        <div className="w-full overflow-x-auto rounded-xl border border-zinc-800">
           <table className="w-full text-left text-sm">
-            <thead className="bg-neutral-900/80 text-xs uppercase tracking-wide text-neutral-500">
+            <thead className="bg-zinc-900/80 text-xs uppercase tracking-wide text-zinc-500">
               <tr>
                 <th className="px-4 py-3 font-medium">When</th>
                 <th className="px-4 py-3 font-medium">Package</th>
@@ -359,16 +359,16 @@ export default function LedgerPage() {
                 <th className="px-4 py-3 font-medium text-right"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-800">
+            <tbody className="divide-y divide-zinc-800">
               {filtered.map((e) => {
                 const meta = decisionTone(e.decision)
                 return (
-                  <tr key={e.id} className="hover:bg-neutral-900/60">
-                    <td className="whitespace-nowrap px-4 py-3 text-xs text-neutral-500">{fmtDate(e.created_at)}</td>
-                    <td className="px-4 py-3 font-medium text-neutral-200">
+                  <tr key={e.id} className="hover:bg-zinc-900/60">
+                    <td className="whitespace-nowrap px-4 py-3 text-xs text-zinc-500">{fmtDate(e.created_at)}</td>
+                    <td className="px-4 py-3 font-medium text-zinc-200">
                       <div>{e.package_name ?? e.package ?? '—'}</div>
                       {(e.from_version || e.to_version) && (
-                        <div className="font-mono text-[11px] text-neutral-500">
+                        <div className="font-mono text-[11px] text-zinc-500">
                           {e.from_version ?? '?'} → {e.to_version ?? '?'}
                         </div>
                       )}
@@ -379,11 +379,11 @@ export default function LedgerPage() {
                     <td className="px-4 py-3 text-center">
                       <GradeBadge grade={e.grade_at_decision} />
                     </td>
-                    <td className="px-4 py-3 text-right tabular-nums text-neutral-300">
+                    <td className="px-4 py-3 text-right tabular-nums text-zinc-300">
                       {typeof e.score_at_decision === 'number' ? e.score_at_decision.toFixed(1) : '—'}
                     </td>
-                    <td className="px-4 py-3 text-neutral-400">{e.actor_id ?? 'system'}</td>
-                    <td className="px-4 py-3 font-mono text-[11px] text-neutral-500" title={e.entry_hash ?? ''}>
+                    <td className="px-4 py-3 text-zinc-400">{e.actor_id ?? 'system'}</td>
+                    <td className="px-4 py-3 font-mono text-[11px] text-zinc-500" title={e.entry_hash ?? ''}>
                       {shortHash(e.entry_hash)}
                     </td>
                     <td className="px-4 py-3 text-right">
@@ -417,52 +417,52 @@ export default function LedgerPage() {
               <Badge tone={decisionTone(detail.decision).tone}>{decisionTone(detail.decision).label}</Badge>
               <GradeBadge grade={detail.grade_at_decision} />
               {typeof detail.score_at_decision === 'number' && (
-                <span className="text-xs text-neutral-400">score {detail.score_at_decision.toFixed(1)}</span>
+                <span className="text-xs text-zinc-400">score {detail.score_at_decision.toFixed(1)}</span>
               )}
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Package</div>
-                <div className="mt-0.5 text-neutral-200">{detail.package_name ?? detail.package ?? '—'}</div>
+                <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Package</div>
+                <div className="mt-0.5 text-zinc-200">{detail.package_name ?? detail.package ?? '—'}</div>
               </div>
               <div>
-                <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Actor</div>
-                <div className="mt-0.5 text-neutral-200">{detail.actor_id ?? 'system'}</div>
+                <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Actor</div>
+                <div className="mt-0.5 text-zinc-200">{detail.actor_id ?? 'system'}</div>
               </div>
               <div>
-                <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">When</div>
-                <div className="mt-0.5 text-neutral-200">{fmtDate(detail.created_at)}</div>
+                <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">When</div>
+                <div className="mt-0.5 text-zinc-200">{fmtDate(detail.created_at)}</div>
               </div>
               <div>
-                <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Update</div>
-                <div className="mt-0.5 font-mono text-xs text-neutral-400">{detail.update_id ?? '—'}</div>
+                <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Update</div>
+                <div className="mt-0.5 font-mono text-xs text-zinc-400">{detail.update_id ?? '—'}</div>
               </div>
             </div>
 
             {detail.justification && (
               <div>
-                <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Justification</div>
-                <p className="mt-0.5 whitespace-pre-wrap text-neutral-300">{detail.justification}</p>
+                <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Justification</div>
+                <p className="mt-0.5 whitespace-pre-wrap text-zinc-300">{detail.justification}</p>
               </div>
             )}
 
-            <div className="rounded-lg border border-neutral-800 bg-neutral-950 p-3">
-              <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Hash chain</div>
-              <div className="mt-1 space-y-1 font-mono text-[11px] text-neutral-400">
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-3">
+              <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Hash chain</div>
+              <div className="mt-1 space-y-1 font-mono text-[11px] text-zinc-400">
                 <div>
-                  <span className="text-neutral-600">prev:</span> {detail.prev_hash ?? '(genesis)'}
+                  <span className="text-zinc-600">prev:</span> {detail.prev_hash ?? '(genesis)'}
                 </div>
                 <div className="break-all">
-                  <span className="text-neutral-600">this:</span> <span className="text-lime-300">{detail.entry_hash ?? '—'}</span>
+                  <span className="text-zinc-600">this:</span> <span className="text-pink-300">{detail.entry_hash ?? '—'}</span>
                 </div>
               </div>
             </div>
 
             {detail.policy_result != null && (
               <div>
-                <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Policy result</div>
-                <pre className="mt-1 max-h-40 overflow-auto rounded-lg border border-neutral-800 bg-neutral-950 p-3 font-mono text-[11px] text-neutral-300">
+                <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Policy result</div>
+                <pre className="mt-1 max-h-40 overflow-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 font-mono text-[11px] text-zinc-300">
                   {JSON.stringify(detail.policy_result, null, 2)}
                 </pre>
               </div>
@@ -470,8 +470,8 @@ export default function LedgerPage() {
 
             {detail.factors_snapshot != null && (
               <div>
-                <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Factors snapshot</div>
-                <pre className="mt-1 max-h-48 overflow-auto rounded-lg border border-neutral-800 bg-neutral-950 p-3 font-mono text-[11px] text-neutral-300">
+                <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Factors snapshot</div>
+                <pre className="mt-1 max-h-48 overflow-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 font-mono text-[11px] text-zinc-300">
                   {JSON.stringify(detail.factors_snapshot, null, 2)}
                 </pre>
               </div>

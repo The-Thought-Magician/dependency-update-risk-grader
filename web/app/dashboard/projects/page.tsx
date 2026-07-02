@@ -148,8 +148,8 @@ export default function ProjectsPage() {
     <div className="mx-auto max-w-6xl">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-neutral-100">Projects</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Projects</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Repositories under supply-chain watch. Each project holds a dependency inventory graded for update risk.
           </p>
         </div>
@@ -158,7 +158,7 @@ export default function ProjectsPage() {
             <select
               value={activeWs}
               onChange={(e) => setActiveWs(e.target.value)}
-              className="rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500/50 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500/50 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -189,15 +189,15 @@ export default function ProjectsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by name, repo, or tag..."
-              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder-neutral-600 focus:border-lime-500/50 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 focus:border-pink-500/50 focus:outline-none"
             />
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-wide text-neutral-600">Ecosystem</span>
+            <span className="text-xs uppercase tracking-wide text-zinc-600">Ecosystem</span>
             <select
               value={ecoFilter}
               onChange={(e) => setEcoFilter(e.target.value)}
-              className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500/50 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500/50 focus:outline-none"
             >
               <option value="all">All</option>
               {ecosystems.map((eco) => (
@@ -280,22 +280,22 @@ export default function ProjectsPage() {
                   <TD>
                     <Link
                       href={`/dashboard/projects/${p.id}`}
-                      className="font-medium text-neutral-100 hover:text-lime-300"
+                      className="font-medium text-zinc-100 hover:text-pink-300"
                     >
                       {p.name}
                     </Link>
                     {p.repo_url && (
-                      <div className="mt-0.5 max-w-xs truncate text-xs text-neutral-600">{p.repo_url}</div>
+                      <div className="mt-0.5 max-w-xs truncate text-xs text-zinc-600">{p.repo_url}</div>
                     )}
                   </TD>
                   <TD>
                     <Badge tone={ECO_TONE[p.ecosystem] ?? 'neutral'}>{p.ecosystem}</Badge>
                   </TD>
-                  <TD className="text-right tabular-nums text-neutral-200">{p.dependency_count ?? 0}</TD>
+                  <TD className="text-right tabular-nums text-zinc-200">{p.dependency_count ?? 0}</TD>
                   <TD>
                     <div className="flex flex-wrap gap-1">
                       {(p.tags ?? []).length === 0 ? (
-                        <span className="text-xs text-neutral-600">-</span>
+                        <span className="text-xs text-zinc-600">-</span>
                       ) : (
                         (p.tags ?? []).map((t) => (
                           <Badge key={t} tone="neutral">
@@ -305,7 +305,7 @@ export default function ProjectsPage() {
                       )}
                     </div>
                   </TD>
-                  <TD className="text-neutral-400">{fmtDate(p.created_at)}</TD>
+                  <TD className="text-zinc-400">{fmtDate(p.created_at)}</TD>
                   <TD className="text-right">
                     <div className="flex justify-end gap-1">
                       <Link href={`/dashboard/projects/${p.id}`}>
@@ -343,8 +343,8 @@ export default function ProjectsPage() {
           </>
         }
       >
-        <p className="text-sm text-neutral-300">
-          Delete <span className="font-semibold text-neutral-100">{pendingDelete?.name}</span> and its dependency
+        <p className="text-sm text-zinc-300">
+          Delete <span className="font-semibold text-zinc-100">{pendingDelete?.name}</span> and its dependency
           inventory? This cannot be undone.
         </p>
         {actionError && <p className="mt-3 text-sm text-red-300">{actionError}</p>}

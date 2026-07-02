@@ -45,7 +45,7 @@ function fmt(n: number): string {
 function Trend({ v }: { v: number }) {
   if (v > 0.02) return <span className="text-emerald-400">▲ {(v * 100).toFixed(0)}%</span>
   if (v < -0.02) return <span className="text-red-400">▼ {(Math.abs(v) * 100).toFixed(0)}%</span>
-  return <span className="text-neutral-500">– flat</span>
+  return <span className="text-zinc-500">– flat</span>
 }
 
 export default function PackagesPage() {
@@ -112,8 +112,8 @@ export default function PackagesPage() {
     <div className="mx-auto flex max-w-6xl flex-col gap-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-100">Package intelligence</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-100">Package intelligence</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Reputation, popularity, maintenance signals, and supply-chain risk flags across observed packages.
           </p>
         </div>
@@ -135,12 +135,12 @@ export default function PackagesPage() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search packages by name..."
-              className="min-w-[200px] flex-1 rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-lime-500/50 focus:outline-none"
+              className="min-w-[200px] flex-1 rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-pink-500/50 focus:outline-none"
             />
             <select
               value={ecosystem}
               onChange={(e) => setEcosystem(e.target.value)}
-              className="rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500/50 focus:outline-none"
+              className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500/50 focus:outline-none"
             >
               {ECOSYSTEMS.map((e) => (
                 <option key={e || 'all'} value={e}>
@@ -151,7 +151,7 @@ export default function PackagesPage() {
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as SortKey)}
-              className="rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-lime-500/50 focus:outline-none"
+              className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-pink-500/50 focus:outline-none"
             >
               <option value="downloads">Sort: downloads</option>
               <option value="stars">Sort: stars</option>
@@ -163,7 +163,7 @@ export default function PackagesPage() {
               className={`rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
                 riskyOnly
                   ? 'border-red-500/40 bg-red-500/15 text-red-300'
-                  : 'border-neutral-800 bg-neutral-950 text-neutral-400 hover:text-neutral-200'
+                  : 'border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-zinc-200'
               }`}
             >
               Flagged only
@@ -197,7 +197,7 @@ export default function PackagesPage() {
       ) : (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-neutral-200">
+            <h2 className="text-sm font-semibold text-zinc-200">
               {view.length} package{view.length === 1 ? '' : 's'}
             </h2>
           </CardHeader>
@@ -220,11 +220,11 @@ export default function PackagesPage() {
                     <TD>
                       <Link
                         href={`/dashboard/packages/${p.id}`}
-                        className="font-medium text-neutral-100 hover:text-lime-300"
+                        className="font-medium text-zinc-100 hover:text-pink-300"
                       >
                         {p.name}
                       </Link>
-                      <span className="ml-2 text-xs text-neutral-600">{p.ecosystem}</span>
+                      <span className="ml-2 text-xs text-zinc-600">{p.ecosystem}</span>
                     </TD>
                     <TD>
                       <Badge tone={TIER_TONE[p.reputation_tier] ?? 'neutral'}>{p.reputation_tier}</Badge>
@@ -241,7 +241,7 @@ export default function PackagesPage() {
                         {p.is_archived && <Badge tone="amber">archived</Badge>}
                         {p.typosquat_suspect && <Badge tone="red">typosquat?</Badge>}
                         {!p.is_deprecated && !p.is_archived && !p.typosquat_suspect && (
-                          <span className="text-xs text-neutral-600">clean</span>
+                          <span className="text-xs text-zinc-600">clean</span>
                         )}
                       </div>
                     </TD>

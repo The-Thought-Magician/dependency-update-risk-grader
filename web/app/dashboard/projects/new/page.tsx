@@ -176,16 +176,16 @@ export default function NewProjectPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <div className="mb-6 flex items-center gap-2 text-sm text-neutral-500">
-        <Link href="/dashboard/projects" className="hover:text-lime-300">
+      <div className="mb-6 flex items-center gap-2 text-sm text-zinc-500">
+        <Link href="/dashboard/projects" className="hover:text-pink-300">
           Projects
         </Link>
         <span>/</span>
-        <span className="text-neutral-300">New</span>
+        <span className="text-zinc-300">New</span>
       </div>
 
-      <h1 className="text-2xl font-bold tracking-tight text-neutral-100">New Project</h1>
-      <p className="mt-1 text-sm text-neutral-500">
+      <h1 className="text-2xl font-bold tracking-tight text-zinc-100">New Project</h1>
+      <p className="mt-1 text-sm text-zinc-500">
         Register a repository and optionally upload its manifest. Packages and dependencies are parsed on upload so risk
         grading can begin.
       </p>
@@ -193,9 +193,9 @@ export default function NewProjectPage() {
       {workspaces.length === 0 ? (
         <Card className="mt-6">
           <CardBody>
-            <p className="text-sm text-neutral-300">
+            <p className="text-sm text-zinc-300">
               You need a workspace before creating a project.{' '}
-              <Link href="/dashboard/settings" className="text-lime-300 hover:underline">
+              <Link href="/dashboard/settings" className="text-pink-300 hover:underline">
                 Create one in Settings.
               </Link>
             </p>
@@ -212,7 +212,7 @@ export default function NewProjectPage() {
           {/* Project details */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-neutral-100">Project details</h2>
+              <h2 className="text-sm font-semibold text-zinc-100">Project details</h2>
             </CardHeader>
             <CardBody className="flex flex-col gap-4">
               {workspaces.length > 1 && (
@@ -255,8 +255,8 @@ export default function NewProjectPage() {
                       onClick={() => setEcosystem(eco)}
                       className={`rounded-lg border px-3 py-1.5 text-sm transition-colors ${
                         ecosystem === eco
-                          ? 'border-lime-500/50 bg-lime-400/10 text-lime-300'
-                          : 'border-neutral-700 bg-neutral-950 text-neutral-300 hover:border-neutral-600'
+                          ? 'border-pink-500/50 bg-pink-400/10 text-pink-300'
+                          : 'border-zinc-700 bg-zinc-950 text-zinc-300 hover:border-zinc-600'
                       }`}
                     >
                       {eco}
@@ -299,17 +299,17 @@ export default function NewProjectPage() {
           <Card>
             <CardHeader className="flex items-center justify-between">
               <div>
-                <h2 className="text-sm font-semibold text-neutral-100">Manifest</h2>
-                <p className="mt-0.5 text-xs text-neutral-500">
+                <h2 className="text-sm font-semibold text-zinc-100">Manifest</h2>
+                <p className="mt-0.5 text-xs text-zinc-500">
                   Paste a dependency manifest to populate the inventory immediately.
                 </p>
               </div>
-              <label className="flex items-center gap-2 text-sm text-neutral-300">
+              <label className="flex items-center gap-2 text-sm text-zinc-300">
                 <input
                   type="checkbox"
                   checked={uploadManifestToggle}
                   onChange={(e) => setUploadManifestToggle(e.target.checked)}
-                  className="h-4 w-4 accent-lime-400"
+                  className="h-4 w-4 accent-pink-400"
                 />
                 Upload now
               </label>
@@ -338,7 +338,7 @@ export default function NewProjectPage() {
                   <button
                     type="button"
                     onClick={() => setManifestContent(SAMPLE_NPM)}
-                    className="self-start text-xs text-lime-300 hover:underline"
+                    className="self-start text-xs text-pink-300 hover:underline"
                   >
                     Insert sample package.json
                   </button>
@@ -404,10 +404,10 @@ function Field({
 }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-neutral-500">
+      <span className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-zinc-500">
         {label}
-        {required && <span className="text-lime-400">*</span>}
-        {hint && <span className="font-normal normal-case tracking-normal text-neutral-600">{hint}</span>}
+        {required && <span className="text-pink-400">*</span>}
+        {hint && <span className="font-normal normal-case tracking-normal text-zinc-600">{hint}</span>}
       </span>
       {children}
     </label>

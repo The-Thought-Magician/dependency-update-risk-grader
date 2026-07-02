@@ -125,7 +125,7 @@ function factorTone(contribution: number): 'red' | 'amber' | 'lime' | 'green' {
 function barColor(contribution: number): string {
   if (contribution >= 15) return 'bg-red-500'
   if (contribution >= 7) return 'bg-amber-400'
-  if (contribution >= 2) return 'bg-lime-400'
+  if (contribution >= 2) return 'bg-pink-400'
   return 'bg-emerald-500'
 }
 
@@ -291,35 +291,35 @@ export default function UpdateDetailPage() {
   return (
     <div className="mx-auto max-w-5xl">
       {/* Breadcrumb */}
-      <div className="mb-4 flex items-center gap-2 text-sm text-neutral-500">
-        <Link href="/dashboard/updates" className="hover:text-lime-300">
+      <div className="mb-4 flex items-center gap-2 text-sm text-zinc-500">
+        <Link href="/dashboard/updates" className="hover:text-pink-300">
           Updates
         </Link>
         <span>/</span>
-        <span className="text-neutral-300">{pkgName}</span>
+        <span className="text-zinc-300">{pkgName}</span>
       </div>
 
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-3">
-            <h1 className="truncate text-2xl font-bold tracking-tight text-neutral-100">{pkgName}</h1>
+            <h1 className="truncate text-2xl font-bold tracking-tight text-zinc-100">{pkgName}</h1>
             <Badge tone="neutral">{update.ecosystem}</Badge>
             <Badge tone={STATUS_TONE[update.status] ?? 'neutral'}>{humanize(update.status)}</Badge>
           </div>
-          <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-neutral-400">
-            <code className="rounded bg-neutral-900 px-1.5 py-0.5 text-xs text-neutral-300">{update.from_version}</code>
-            <span className="text-lime-400">→</span>
-            <code className="rounded bg-neutral-900 px-1.5 py-0.5 text-xs text-lime-300">{update.to_version}</code>
+          <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-zinc-400">
+            <code className="rounded bg-zinc-900 px-1.5 py-0.5 text-xs text-zinc-300">{update.from_version}</code>
+            <span className="text-pink-400">→</span>
+            <code className="rounded bg-zinc-900 px-1.5 py-0.5 text-xs text-pink-300">{update.to_version}</code>
             <Badge tone="neutral">{update.bump_type} bump</Badge>
-            <span className="text-neutral-600">·</span>
+            <span className="text-zinc-600">·</span>
             <span>
               in{' '}
-              <Link href={`/dashboard/projects/${update.project_id}`} className="text-neutral-200 hover:text-lime-300">
+              <Link href={`/dashboard/projects/${update.project_id}`} className="text-zinc-200 hover:text-pink-300">
                 {projName}
               </Link>
             </span>
-            <span className="text-neutral-600">·</span>
+            <span className="text-zinc-600">·</span>
             <span>via {update.source}</span>
           </div>
           {update.source_pr_url && (
@@ -327,7 +327,7 @@ export default function UpdateDetailPage() {
               href={update.source_pr_url}
               target="_blank"
               rel="noreferrer"
-              className="mt-2 inline-block text-sm text-lime-300 hover:underline"
+              className="mt-2 inline-block text-sm text-pink-300 hover:underline"
             >
               View source PR ↗
             </a>
@@ -358,8 +358,8 @@ export default function UpdateDetailPage() {
         <Card className="flex items-center gap-4 px-5 py-4">
           <GradeBadge grade={grade} className="text-2xl px-3 py-1" />
           <div>
-            <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Grade</div>
-            <div className="text-sm text-neutral-400">{grade ? 'Risk grade' : 'Not yet graded'}</div>
+            <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Grade</div>
+            <div className="text-sm text-zinc-400">{grade ? 'Risk grade' : 'Not yet graded'}</div>
           </div>
         </Card>
         <Stat
@@ -383,8 +383,8 @@ export default function UpdateDetailPage() {
       <Card className="mt-6">
         <CardBody className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <div className="text-sm font-semibold text-neutral-100">Decision</div>
-            <div className="text-xs text-neutral-500">
+            <div className="text-sm font-semibold text-zinc-100">Decision</div>
+            <div className="text-xs text-zinc-500">
               Transitions are written to the tamper-evident decision ledger.
             </div>
           </div>
@@ -409,14 +409,14 @@ export default function UpdateDetailPage() {
       {/* Factor breakdown */}
       <Card className="mt-6">
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-100">Risk factor breakdown</h2>
-          <p className="mt-0.5 text-xs text-neutral-500">
+          <h2 className="text-sm font-semibold text-zinc-100">Risk factor breakdown</h2>
+          <p className="mt-0.5 text-xs text-zinc-500">
             Weighted sub-scores summed into the total. Larger bars contribute more risk.
           </p>
         </CardHeader>
         <CardBody>
           {sortedFactors.length === 0 ? (
-            <p className="py-4 text-sm text-neutral-500">
+            <p className="py-4 text-sm text-zinc-500">
               No factor data yet. Run a re-evaluation to compute the breakdown.
             </p>
           ) : (
@@ -427,16 +427,16 @@ export default function UpdateDetailPage() {
                   const pct = Math.min(100, (Math.abs(f.contribution ?? 0) / maxContribution) * 100)
                   return (
                     <div key={f.factor_type} className="flex items-center gap-3">
-                      <div className="w-44 shrink-0 truncate text-xs text-neutral-300" title={humanize(f.factor_type)}>
+                      <div className="w-44 shrink-0 truncate text-xs text-zinc-300" title={humanize(f.factor_type)}>
                         {humanize(f.factor_type)}
                       </div>
-                      <div className="h-3 flex-1 overflow-hidden rounded-full bg-neutral-800">
+                      <div className="h-3 flex-1 overflow-hidden rounded-full bg-zinc-800">
                         <div
                           className={`h-full rounded-full ${barColor(f.contribution ?? 0)}`}
                           style={{ width: `${pct}%` }}
                         />
                       </div>
-                      <div className="w-12 shrink-0 text-right text-xs tabular-nums text-neutral-300">
+                      <div className="w-12 shrink-0 text-right text-xs tabular-nums text-zinc-300">
                         {(f.contribution ?? 0).toFixed(1)}
                       </div>
                     </div>
@@ -463,7 +463,7 @@ export default function UpdateDetailPage() {
                           <Badge tone={factorTone(f.contribution ?? 0)}>{humanize(f.factor_type)}</Badge>
                         </div>
                         {f.detail && Object.keys(f.detail).length > 0 && (
-                          <div className="mt-1 text-xs text-neutral-600">
+                          <div className="mt-1 text-xs text-zinc-600">
                             {Object.entries(f.detail)
                               .slice(0, 4)
                               .map(([k, v]) => `${k}: ${String(v)}`)
@@ -474,7 +474,7 @@ export default function UpdateDetailPage() {
                       <TD className="text-right tabular-nums">{(f.raw_value ?? 0).toFixed(2)}</TD>
                       <TD className="text-right tabular-nums">{(f.sub_score ?? 0).toFixed(2)}</TD>
                       <TD className="text-right tabular-nums">{(f.weight ?? 0).toFixed(2)}</TD>
-                      <TD className="text-right font-medium tabular-nums text-neutral-100">
+                      <TD className="text-right font-medium tabular-nums text-zinc-100">
                         {(f.contribution ?? 0).toFixed(2)}
                       </TD>
                     </TR>
@@ -491,12 +491,12 @@ export default function UpdateDetailPage() {
         {/* Script diff */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-neutral-100">Lifecycle script diff</h2>
-            <p className="mt-0.5 text-xs text-neutral-500">New install hooks are a top vector for supply-chain attacks.</p>
+            <h2 className="text-sm font-semibold text-zinc-100">Lifecycle script diff</h2>
+            <p className="mt-0.5 text-xs text-zinc-500">New install hooks are a top vector for supply-chain attacks.</p>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
             {!scriptDiff ? (
-              <p className="text-sm text-neutral-500">No script diff computed.</p>
+              <p className="text-sm text-zinc-500">No script diff computed.</p>
             ) : (
               <>
                 <div className="flex flex-wrap gap-2">
@@ -510,13 +510,13 @@ export default function UpdateDetailPage() {
                 <ScriptList title="Removed" tone="neutral" entries={scriptDiff.removed_scripts} strike />
                 {scriptDiff.changed_scripts && Object.keys(scriptDiff.changed_scripts).length > 0 && (
                   <div>
-                    <div className="mb-1 text-xs font-medium uppercase tracking-wide text-neutral-500">Changed</div>
+                    <div className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-500">Changed</div>
                     <div className="flex flex-col gap-2">
                       {Object.entries(scriptDiff.changed_scripts).map(([k, v]) => (
-                        <div key={k} className="rounded-lg border border-neutral-800 bg-neutral-950 p-2 text-xs">
-                          <div className="font-medium text-neutral-300">{k}</div>
+                        <div key={k} className="rounded-lg border border-zinc-800 bg-zinc-950 p-2 text-xs">
+                          <div className="font-medium text-zinc-300">{k}</div>
                           <div className="mt-1 font-mono text-red-300/80 line-through">{v.from}</div>
-                          <div className="font-mono text-lime-300">{v.to}</div>
+                          <div className="font-mono text-pink-300">{v.to}</div>
                         </div>
                       ))}
                     </div>
@@ -536,8 +536,8 @@ export default function UpdateDetailPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <div>
-              <h2 className="text-sm font-semibold text-neutral-100">Dependency delta</h2>
-              <p className="mt-0.5 text-xs text-neutral-500">Transitive changes introduced by this bump.</p>
+              <h2 className="text-sm font-semibold text-zinc-100">Dependency delta</h2>
+              <p className="mt-0.5 text-xs text-zinc-500">Transitive changes introduced by this bump.</p>
             </div>
             {depDelta?.blast_radius != null && (
               <Badge tone={depDelta.blast_radius > 10 ? 'red' : depDelta.blast_radius > 3 ? 'amber' : 'lime'}>
@@ -547,7 +547,7 @@ export default function UpdateDetailPage() {
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
             {!depDelta ? (
-              <p className="text-sm text-neutral-500">No dependency delta computed.</p>
+              <p className="text-sm text-zinc-500">No dependency delta computed.</p>
             ) : (
               <>
                 <DeltaList
@@ -562,16 +562,16 @@ export default function UpdateDetailPage() {
                 />
                 {depDelta.range_widened && depDelta.range_widened.length > 0 && (
                   <div>
-                    <div className="mb-1 text-xs font-medium uppercase tracking-wide text-neutral-500">
+                    <div className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-500">
                       Range widened
                     </div>
                     <div className="flex flex-col gap-1">
                       {depDelta.range_widened.map((r) => (
                         <div key={r.name} className="flex items-center gap-2 text-xs">
-                          <span className="text-neutral-300">{r.name}</span>
-                          <code className="rounded bg-neutral-900 px-1 text-neutral-400">{r.from}</code>
+                          <span className="text-zinc-300">{r.name}</span>
+                          <code className="rounded bg-zinc-900 px-1 text-zinc-400">{r.from}</code>
                           <span className="text-amber-400">→</span>
-                          <code className="rounded bg-neutral-900 px-1 text-amber-300">{r.to}</code>
+                          <code className="rounded bg-zinc-900 px-1 text-amber-300">{r.to}</code>
                         </div>
                       ))}
                     </div>
@@ -592,8 +592,8 @@ export default function UpdateDetailPage() {
       <Card className="mt-6">
         <CardHeader className="flex items-center justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-neutral-100">Policy evaluation</h2>
-            <p className="mt-0.5 text-xs text-neutral-500">Rule pass/fail against the workspace default policy.</p>
+            <h2 className="text-sm font-semibold text-zinc-100">Policy evaluation</h2>
+            <p className="mt-0.5 text-xs text-zinc-500">Rule pass/fail against the workspace default policy.</p>
           </div>
           <Button variant="secondary" onClick={handleRunPolicy} disabled={runningPolicy}>
             {runningPolicy ? (
@@ -607,7 +607,7 @@ export default function UpdateDetailPage() {
         </CardHeader>
         <CardBody>
           {evals.length === 0 ? (
-            <p className="py-2 text-sm text-neutral-500">
+            <p className="py-2 text-sm text-zinc-500">
               No policy evaluation yet. Run the workspace default policy against this update.
             </p>
           ) : (
@@ -615,12 +615,12 @@ export default function UpdateDetailPage() {
               {evals.map((ev, i) => (
                 <div
                   key={ev.id ?? `${ev.rule_type}-${i}`}
-                  className="flex items-start gap-3 rounded-lg border border-neutral-800 bg-neutral-950 px-4 py-3"
+                  className="flex items-start gap-3 rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3"
                 >
                   <Badge tone={ev.passed ? 'green' : 'red'}>{ev.passed ? 'PASS' : 'FAIL'}</Badge>
                   <div className="min-w-0">
-                    <div className="text-sm font-medium text-neutral-200">{humanize(ev.rule_type)}</div>
-                    {ev.message && <div className="mt-0.5 text-xs text-neutral-500">{ev.message}</div>}
+                    <div className="text-sm font-medium text-zinc-200">{humanize(ev.rule_type)}</div>
+                    {ev.message && <div className="mt-0.5 text-xs text-zinc-500">{ev.message}</div>}
                   </div>
                 </div>
               ))}
@@ -632,12 +632,12 @@ export default function UpdateDetailPage() {
       {/* Metadata */}
       <Card className="mt-6">
         <CardHeader>
-          <h2 className="text-sm font-semibold text-neutral-100">Metadata</h2>
+          <h2 className="text-sm font-semibold text-zinc-100">Metadata</h2>
         </CardHeader>
         <CardBody>
           <dl className="grid grid-cols-1 gap-x-8 gap-y-3 text-sm sm:grid-cols-2">
             <Meta label="Status" value={<Badge tone={STATUS_TONE[update.status] ?? 'neutral'}>{humanize(update.status)}</Badge>} />
-            <Meta label="Assigned to" value={update.assigned_to || <span className="text-neutral-600">Unassigned</span>} />
+            <Meta label="Assigned to" value={update.assigned_to || <span className="text-zinc-600">Unassigned</span>} />
             <Meta label="Source" value={update.source} />
             <Meta label="Created" value={fmtDate(update.created_at)} />
             <Meta label="Updated" value={fmtDate(update.updated_at)} />
@@ -671,21 +671,21 @@ export default function UpdateDetailPage() {
           </>
         }
       >
-        <p className="text-sm text-neutral-300">
-          Transition <span className="font-semibold text-neutral-100">{pkgName}</span> ({update.from_version} →{' '}
+        <p className="text-sm text-zinc-300">
+          Transition <span className="font-semibold text-zinc-100">{pkgName}</span> ({update.from_version} →{' '}
           {update.to_version}) to{' '}
-          <span className="font-semibold text-lime-300">{decision && humanize(decision.status)}</span>.
+          <span className="font-semibold text-pink-300">{decision && humanize(decision.status)}</span>.
         </p>
         <label className="mt-4 flex flex-col gap-1.5">
-          <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">
-            Justification <span className="font-normal normal-case text-neutral-600">(recorded in ledger)</span>
+          <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+            Justification <span className="font-normal normal-case text-zinc-600">(recorded in ledger)</span>
           </span>
           <textarea
             value={justification}
             onChange={(e) => setJustification(e.target.value)}
             rows={3}
             placeholder="Why are you making this decision?"
-            className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder-neutral-600 focus:border-lime-500/50 focus:outline-none"
+            className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 focus:border-pink-500/50 focus:outline-none"
           />
         </label>
         {actionError && <p className="mt-3 text-sm text-red-300">{actionError}</p>}
@@ -716,15 +716,15 @@ function ScriptList({
   return (
     <div>
       <div className="mb-1 flex items-center gap-2">
-        <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">{title}</span>
+        <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">{title}</span>
         <Badge tone={tone}>{Object.keys(entries).length}</Badge>
       </div>
       <div className="flex flex-col gap-1">
         {Object.entries(entries).map(([k, v]) => (
-          <div key={k} className="rounded-lg border border-neutral-800 bg-neutral-950 p-2 text-xs">
-            <span className="font-medium text-neutral-300">{k}</span>
-            <span className="mx-1 text-neutral-600">:</span>
-            <span className={`font-mono ${strike ? 'text-neutral-500 line-through' : 'text-neutral-300'}`}>{v}</span>
+          <div key={k} className="rounded-lg border border-zinc-800 bg-zinc-950 p-2 text-xs">
+            <span className="font-medium text-zinc-300">{k}</span>
+            <span className="mx-1 text-zinc-600">:</span>
+            <span className={`font-mono ${strike ? 'text-zinc-500 line-through' : 'text-zinc-300'}`}>{v}</span>
           </div>
         ))}
       </div>
@@ -737,12 +737,12 @@ function DeltaList({ title, tone, items }: { title: string; tone: 'amber' | 'neu
   return (
     <div>
       <div className="mb-1 flex items-center gap-2">
-        <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">{title}</span>
+        <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">{title}</span>
         <Badge tone={tone}>{items.length}</Badge>
       </div>
       <div className="flex flex-wrap gap-1">
         {items.map((it) => (
-          <code key={it} className="rounded bg-neutral-900 px-2 py-0.5 text-xs text-neutral-300">
+          <code key={it} className="rounded bg-zinc-900 px-2 py-0.5 text-xs text-zinc-300">
             {it}
           </code>
         ))}
@@ -753,9 +753,9 @@ function DeltaList({ title, tone, items }: { title: string; tone: 'amber' | 'neu
 
 function Meta({ label, value }: { label: string; value: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between gap-4 border-b border-neutral-800/60 pb-2">
-      <dt className="text-neutral-500">{label}</dt>
-      <dd className="text-right text-neutral-200">{value}</dd>
+    <div className="flex items-center justify-between gap-4 border-b border-zinc-800/60 pb-2">
+      <dt className="text-zinc-500">{label}</dt>
+      <dd className="text-right text-zinc-200">{value}</dd>
     </div>
   )
 }
